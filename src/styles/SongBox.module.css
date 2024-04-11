@@ -1,8 +1,11 @@
 .div {
     background-color: black;
     color: white;
-    width: 50%;
+    width: 47.5%;
     min-width: 250px;
+    height: 100px;
+    padding: 5px;
+    margin-bottom: 10px;
 }
 .b {
     font-size: 1.25rem;

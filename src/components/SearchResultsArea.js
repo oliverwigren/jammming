@@ -8,8 +8,6 @@ function SearchResultsArea() {
       <h3>Search Results</h3>
       <div className={styles.contain}>
         <SearchResults />
-        <SearchResults />
-        <SearchResults />
       </div>
     </section>
   );

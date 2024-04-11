@@ -8,6 +8,7 @@ function SongBox(props) {
             <p className={styles.desc}>
                 <span>{props.artist}</span>
             </p>
+            <button onClick={props.addToPlaylist}>Add To Playlist</button>
         </div>
     )
 }
