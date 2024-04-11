@@ -1,12 +1,9 @@
 import React from "react";
+import SongBox from './SongBox'
 
-function SearchResults() {
-  return (
-    <section>
-      <p>Search Results</p>
-      <div>{}</div>
-    </section>
-  );
+function SearchResults(props) {
+  //Array.forEach
+  return <SongBox />;
 }
 
 export default SearchResults;

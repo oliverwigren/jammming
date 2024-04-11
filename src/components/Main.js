@@ -1,5 +1,5 @@
 import React from "react";
-import SearchResults from "./SearchResults";
+import SearchResultsArea from "./SearchResultsArea";
 import Playlist from "./Playlist";
 
 function Main() {
