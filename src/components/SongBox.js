@@ -6,7 +6,7 @@ function SongBox(props) {
         <div className={styles.div}>
             <b className={styles.b}>{props.name}</b>
             <p className={styles.desc}>
-                <span>{props.artist}</span>
+                <span>{props.artist}</span> - <span>{props.album}</span>
             </p>
             <button className={styles.button} onClick={props.addToPlaylist}>+</button>
         </div>

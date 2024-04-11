@@ -23,4 +23,4 @@
 
 ## Future work <a name="future"></a>
 - [ ] Better design
-- [x] Ability to search for songs by artist
+- [ ] Ability to search for songs by artist

@@ -3,8 +3,10 @@ import React from 'react';
 const style = {
     backgroundColor: 'blue',
     color: 'white',
-    textAlign: 'center',
+    justifyContent: 'center',
     height: '100px',
+    display: 'flex',
+    alignItems: 'center',
 }
 
 export default function Header() {
