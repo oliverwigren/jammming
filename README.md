@@ -1,5 +1,4 @@
-# Jammming
-## Playlist maker with Spotify API
+# Jammming - Playlist maker with Spotify API
 #### Portfolio project with Codecademy's Full-Stack Developer course
 
 ## Table of Contents
@@ -23,3 +22,5 @@
 - Ability to add playlist to user's Spotify account
 
 ## Future work <a name="future"></a>
+- [ ] Better design
+- [x] Ability to search for songs by artist
