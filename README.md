@@ -24,3 +24,4 @@
 ## Future work <a name="future"></a>
 - [ ] Better design
 - [ ] Ability to search for songs by artist
+- [ ] Random song lyrics as placeholder in search bar

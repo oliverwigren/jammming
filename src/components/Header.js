@@ -4,7 +4,7 @@ const style = {
     backgroundColor: 'blue',
     color: 'white',
     justifyContent: 'center',
-    height: '100px',
+    height: '80px',
     display: 'flex',
     alignItems: 'center',
 }

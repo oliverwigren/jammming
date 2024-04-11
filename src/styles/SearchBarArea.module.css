@@ -1,0 +1,9 @@
+.BG {
+    
+    padding: 20px 0 70px 0;
+    margin-bottom: 50px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-image: url(../../public/concert.jpg);
+    background-position: center -450px;
+}
