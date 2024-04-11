@@ -4,8 +4,8 @@ import styles from '../styles/SongBox.module.css';
 function SongBox(props) {
     return (
         <div className={styles.div}>
-            <b className={styles.b}>{props.title}</b>
-            <p>
+            <b className={styles.b}>{props.name}</b>
+            <p className={styles.desc}>
                 <span>{props.artist}</span>
             </p>
         </div>

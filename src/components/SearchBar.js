@@ -4,10 +4,14 @@ import React from 'react';
 //     setSearch(target.value);
 // }
 
+const handleSubmit = (e) => {
+    e.preventDefault();
+}
+
 function SearchBar() {
     return (
         <div>
-            <form>
+            <form onSubmit={handleSubmit}>
                 <input type='text' />
                 <button type='submit'>Search</button>
             </form>

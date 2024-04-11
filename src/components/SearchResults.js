@@ -1,9 +1,9 @@
 import React from "react";
 import SongBox from './SongBox'
 
-function SearchResults(props) {
+function SearchResults() {
   //Array.forEach
-  return <SongBox />;
+  return <SongBox artist="Eminem" name="Careful what you wish for"/>;
 }
 
 export default SearchResults;

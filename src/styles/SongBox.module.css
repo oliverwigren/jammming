@@ -1,7 +1,11 @@
 .div {
     background-color: black;
     color: white;
+    width: 50%;
 }
 .b {
-    font-size: 2rem;
+    font-size: 1.25rem;
+}
+.desc {
+    margin: 0;
 }

@@ -1,0 +1,13 @@
+.section {
+    width: 55%;
+    margin-left: 5%;
+    border: 1px solid black;
+    padding: 5px;
+}
+.div {
+    display: inline-flex;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+}

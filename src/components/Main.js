@@ -1,13 +1,13 @@
 import React from "react";
 import SearchResultsArea from "./SearchResultsArea";
-import Playlist from "./Playlist";
+import PlaylistArea from "./PlaylistArea";
 
 function Main() {
     return (
         <>
-            <SearchResults />
+            <SearchResultsArea />
 
-            <Playlist />
+            <PlaylistArea />
         </>
     )
 }
