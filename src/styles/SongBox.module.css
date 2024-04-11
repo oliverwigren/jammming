@@ -2,6 +2,7 @@
     background-color: black;
     color: white;
     width: 50%;
+    min-width: 250px;
 }
 .b {
     font-size: 1.25rem;
