@@ -3,13 +3,12 @@ import SearchResultsArea from "./SearchResultsArea";
 import PlaylistArea from "./PlaylistArea";
 
 function Main() {
-    return (
-        <>
-            <SearchResultsArea />
-
-            <PlaylistArea />
-        </>
-    )
+  return (
+    <>
+      <PlaylistArea />
+      <SearchResultsArea />
+    </>
+  );
 }
 
 export default Main;

@@ -1,0 +1,24 @@
+.div {
+    background-color: black;
+    color: white;
+    width: 97.5%;
+    min-width: 250px;
+    height: 100px;
+    padding: 5px;
+    margin-bottom: 10px;
+    border-radius: 15px;
+}
+.b {
+    font-size: 1.25rem;
+}
+.desc {
+    margin: 0;
+}
+.button {
+    position: relative;
+    bottom: -15px;
+    border-radius: 50px;
+    border: 0;
+    width: 35px;
+    height: 35px;
+}
