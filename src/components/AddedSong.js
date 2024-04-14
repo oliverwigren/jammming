@@ -1,10 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "../styles/AddedSong.module.css";
 
 function AddedSong(props) {
+  const [isButtonClick, setButtonClick] = useState(false);
+
+  const handleOnClick = () => {
+    setButtonClick(true);
+  };
+
   return (
-    <div className={styles.div}>
-      <button className={styles.button} onClick={props.addToPlaylist}>
+    <div className={isButtonClick ? styles.RemoveDiv : styles.div}>
+      <button className={styles.button} onClick={handleOnClick}>
         -
       </button>
       <b className={styles.b}>{props.name}</b>

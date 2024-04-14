@@ -22,3 +22,24 @@
     height: 100%;
     float: right;
 }
+
+.RemoveDiv {
+    background-color: white;
+    color: black;
+    width: 97.5%;
+    min-width: 250px;
+    height: 100px;
+    padding: 5px;
+    margin-bottom: 10px;
+    border-radius: 15px;
+    animation: slideOut 0.75s ease-in 0s 1 forwards normal;
+}
+
+@keyframes slideOut {
+    from {
+        margin-left: 0;
+    }
+    to {
+        margin-left: 650px;
+    }
+}
