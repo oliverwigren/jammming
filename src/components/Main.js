@@ -2,11 +2,13 @@ import React from "react";
 import SearchResultsArea from "./SearchResultsArea";
 import PlaylistArea from "./PlaylistArea";
 
-function Main() {
+
+
+function Main(props) {
   return (
     <>
-      <PlaylistArea />
-      <SearchResultsArea />
+      <PlaylistArea songs={props.playListSongs} />
+      <SearchResultsArea searchSongs={props.searchResultSongs} />
     </>
   );
 }

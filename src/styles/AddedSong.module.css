@@ -16,10 +16,9 @@
 }
 .button {
     position: relative;
-    bottom: -15px;
     border-radius: 50px;
     border: 0;
     width: 35px;
-    height: 35px;
+    height: 100%;
     float: right;
 }

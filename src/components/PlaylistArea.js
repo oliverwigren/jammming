@@ -2,11 +2,11 @@ import React from "react";
 import styles from '../styles/PlaylistArea.module.css';
 import Playlist from './Playlist'
 
-function PlaylistArea() {
+function PlaylistArea(props) {
   return (
     <section className={styles.section}>
       <p>Playlist</p>
-      <Playlist songs={['hello', 'no', 'cunt']} />
+      <Playlist songs={props.songs} />
     </section>
   );
 }
