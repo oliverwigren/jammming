@@ -1,6 +1,7 @@
 import React, { useState, useContext } from "react";
 import styles from "../styles/AddedSong.module.css";
 import { PlaylistSongContext } from "../context/PlaylistSongContextArea";
+import { SongsContext } from "../context/SongsContextArea";
 
 function AddedSong(props) {
   const [isButtonClick, setButtonClick] = useState(false);
@@ -10,9 +11,11 @@ function AddedSong(props) {
     setButtonClick(true);
   };
 
-  const { playlist, setPlaylist } = useContext(PlaylistSongContext);
+  //const { playlist, setPlaylist } = useContext(PlaylistSongContext);
+  const { PL } = useContext(SongsContext);
+  const [playlist, setPlaylist] = PL;
 
-  const removeSongFromPlaylist = ({target}) => {
+  const removeSongFromPlaylist = ({ target }) => {
     // setInfo((prev) => {
     //   prev.filter((song) => {
     //     return song.name === target.value;

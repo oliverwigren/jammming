@@ -1,9 +1,12 @@
 import React, { useContext } from "react";
 import AddedSong from "./AddedSong";
 import { PlaylistSongContext } from "../context/PlaylistSongContextArea";
+import { SongsContext } from "../context/SongsContextArea";
 
 function Playlist(props) {
-  const { playlist } = useContext(PlaylistSongContext);
+  const { PL } = useContext(SongsContext);
+  const [playlist] = PL;
+
 
   return (
     <div>
