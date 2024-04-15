@@ -6,6 +6,7 @@ import PlaylistArea from "./components/PlaylistArea";
 import SearchResultsArea from "./components/SearchResultsArea";
 import { PlaylistSongContextArea } from "./context/PlaylistSongContextArea";
 import { SongsContextArea } from "./context/SongsContextArea";
+import { SearchContextArea } from "./context/SearchContextArea";
 
 // TODO: Ta in data från API
 
@@ -46,18 +47,28 @@ const searchResultSongs = [
 ];
 
 function App() {
+  const [search, setSearch] = useState("");
+
+  //Fetch endpoint + search
 
   return (
     <div className="App">
       <Header />
-      {/*Search context*/}
-      <SearchBarArea />
-      <SongsContextArea startValuePlaylist={playlistSongs} startValueSearchResults={searchResultSongs} >
+      <SearchContextArea state={{ search, setSearch }}>
+        <SearchBarArea />
+      </SearchContextArea>
+      <SongsContextArea
+        startValuePlaylist={playlistSongs}
+        startValueSearchResults={searchResultSongs}
+      >
         <PlaylistArea />
       </SongsContextArea>
-      <SongsContextArea startValuePlaylist={playlistSongs} startValueSearchResults={searchResultSongs} >
+      <SongsContextArea
+        startValuePlaylist={playlistSongs}
+        startValueSearchResults={searchResultSongs}
+      >
         <SearchResultsArea />
-      </SongsContextArea> 
+      </SongsContextArea>
     </div>
   );
 }
