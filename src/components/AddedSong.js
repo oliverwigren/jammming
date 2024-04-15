@@ -5,15 +5,19 @@ import { SongContext } from "../SongContext";
 function AddedSong(props) {
   const [isButtonClick, setButtonClick] = useState(false);
 
-  const handleOnClick = () => {
-    removeSongFromPlaylist();
+  const handleOnClick = (e) => {
+    removeSongFromPlaylist(e);
     setButtonClick(true);
   };
 
   const { info, setInfo } = useContext(SongContext);
 
-  const removeSongFromPlaylist = () => {
-    //setPlaylist()
+  const removeSongFromPlaylist = ({target}) => {
+    // setInfo((prev) => {
+    //   prev.filter((song) => {
+    //     return song.name === target.value;
+    //   })
+    // })
   };
 
   return (
