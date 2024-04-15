@@ -1,30 +1,32 @@
-import React, { useContext } from 'react';
-import styles from '../styles/SearchBar.module.css';
-import { SearchContext } from '../context/SearchContextArea';
-
-// const handleChange = ({target}) => {
-//     setSearch(target.value);
-// }
-
-const handleSubmit = (e) => {
-    e.preventDefault();
-    
-    //setSearch(e.target.value)
-}
+import React, { useContext } from "react";
+import styles from "../styles/SearchBar.module.css";
+import { SearchContext } from "../context/SearchContextArea";
 
 function SearchBar() {
+  const { setSearch } = useContext(SearchContext);
 
-    const {setSearch} = useContext(SearchContext);
-    setSearch('hello')
+  const handleSubmit = (e) => {
+    e.preventDefault();
 
-    return (
-        <div className={styles.BG}>
-            <form onSubmit={handleSubmit} className={styles.form}>
-                <input className={styles.input} type='text' name='search' required placeholder='Search for a song'/>
-                <button className={styles.button} type='submit'>Search</button>
-            </form>
-        </div>
-    )
+    setSearch(e.target.getElementsByTagName('input')[0].value);
+  };
+
+  return (
+    <div className={styles.BG}>
+      <form onSubmit={handleSubmit} className={styles.form}>
+        <input
+          className={styles.input}
+          type="text"
+          name="search"
+          required
+          placeholder="Search for a song"
+        />
+        <button className={styles.button} type="submit">
+          Search
+        </button>
+      </form>
+    </div>
+  );
 }
 
 export default SearchBar;

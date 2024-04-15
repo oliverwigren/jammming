@@ -4,7 +4,7 @@ import SearchBarArea from "./components/SearchBarArea";
 import "./App.css";
 import PlaylistArea from "./components/PlaylistArea";
 import SearchResultsArea from "./components/SearchResultsArea";
-import { PlaylistSongContextArea } from "./context/PlaylistSongContextArea";
+//import { PlaylistSongContextArea } from "./context/PlaylistSongContextArea";
 import { SongsContextArea } from "./context/SongsContextArea";
 import { SearchContextArea } from "./context/SearchContextArea";
 
@@ -49,7 +49,7 @@ const searchResultSongs = [
 function App() {
   const [search, setSearch] = useState("");
 
-  //Fetch endpoint + search
+  //TODO: Fetch endpoint + search
 
   return (
     <div className="App">
@@ -72,6 +72,5 @@ function App() {
     </div>
   );
 }
-///*value={{playlist, setPlaylist}}*/
 
 export default App;
