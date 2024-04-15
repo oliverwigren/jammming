@@ -4,7 +4,7 @@ import SearchBarArea from "./components/SearchBarArea";
 import "./App.css";
 import PlaylistArea from "./components/PlaylistArea";
 import SearchResultsArea from "./components/SearchResultsArea";
-import { SongContextArea } from "./SongContext";
+import { PlaylistSongContextArea } from "./context/PlaylistSongContextArea";
 
 // TODO: Ta in data från API
 
@@ -45,19 +45,18 @@ const searchResultSongs = [
 ];
 
 function App() {
-  //const [playlist, setPlaylist] = useState(playListSongs);
-  const [searchResults, setSearchResults] = useState(searchResultSongs);
+  //const [searchResults, setSearchResults] = useState(searchResultSongs);
 
   return (
     <div className="App">
       <Header />
       <SearchBarArea />
-      <SongContextArea startValue={playlistSongs}>
+      <PlaylistSongContextArea startValue={playlistSongs}>
         <PlaylistArea />
-      </SongContextArea>
-      {/* <SongContextArea value={{searchResults, setSearchResults}}>
+      </PlaylistSongContextArea>
+      {/* <SearchSongContextArea value={{searchResults, setSearchResults}}>
         <SearchResultsArea songs={searchResults} />
-      </SongContextArea> */}
+      </SearchSongContextArea>  */}
     </div>
   );
 }

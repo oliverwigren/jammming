@@ -1,13 +1,13 @@
 import React, { useContext } from "react";
 import AddedSong from "./AddedSong";
-import { SongContext } from "../SongContext";
+import { PlaylistSongContext } from "../context/PlaylistSongContextArea";
 
 function Playlist(props) {
-  const { info } = useContext(SongContext);
+  const { playlist } = useContext(PlaylistSongContext);
 
   return (
     <div>
-      {info.map((song, i) => (
+      {playlist.map((song, i) => (
         <AddedSong
           name={song.name}
           artist={song.artist}
