@@ -1,11 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import styles from "../styles/AddedSong.module.css";
+import { SongContext } from "../SongContext";
 
 function AddedSong(props) {
   const [isButtonClick, setButtonClick] = useState(false);
 
   const handleOnClick = () => {
+    removeSongFromPlaylist();
     setButtonClick(true);
+  };
+
+  const { info, setInfo } = useContext(SongContext);
+
+  const removeSongFromPlaylist = () => {
+    //setPlaylist()
   };
 
   return (
