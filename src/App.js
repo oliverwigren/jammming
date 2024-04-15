@@ -55,9 +55,9 @@ function App() {
       <SongsContextArea startValuePlaylist={playlistSongs} startValueSearchResults={searchResultSongs} >
         <PlaylistArea />
       </SongsContextArea>
-      {/* <SongsContextArea startValuePlaylist={playlistSongs} startValueSearchResults={searchResultSongs} >
+      <SongsContextArea startValuePlaylist={playlistSongs} startValueSearchResults={searchResultSongs} >
         <SearchResultsArea />
-      </SongsContextArea>  */}
+      </SongsContextArea> 
     </div>
   );
 }

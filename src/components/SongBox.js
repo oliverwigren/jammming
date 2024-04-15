@@ -1,17 +1,20 @@
-// import React, {useContext} from "react";
-// import styles from '../styles/SongBox.module.css';
-// //import { SongContext } from "../SongContext";
+import React, { useContext } from "react";
+import styles from "../styles/SongBox.module.css";
+import { SongsContext } from "../context/SongsContextArea";
 
-// function SongBox(props) {
-//     return (
-//         <div className={styles.div}>
-//             <b className={styles.b}>{props.name}</b>
-//             <p className={styles.desc}>
-//                 <span>{props.artist}</span> - <span>{props.album}</span>
-//             </p>
-//             <button className={styles.button} onClick={props.addToPlaylist}>+</button>
-//         </div>
-//     )
-// }
+function SongBox(props) {
+  const { PL } = useContext(SongsContext);
+  const [playlist, setPlaylist] = PL;
 
-// export default SongBox;
+  return (
+    <div className={styles.div}>
+      <b className={styles.b}>{props.name}</b>
+      <p className={styles.desc}>
+        <span>{props.artist}</span> - <span>{props.album}</span>
+      </p>
+      <button className={styles.button}>+</button>
+    </div>
+  );
+}
+
+export default SongBox;

@@ -1,26 +1,27 @@
-// import React, { useContext, useEffect } from "react";
-// import SongBox from "./SongBox";
-// import { SongContext } from "../SongContext";
+import React, { useContext, useEffect } from "react";
+import SongBox from "./SongBox";
+import { SongsContext } from "../context/SongsContextArea";
 
-// function SearchResults(props) {
-//   // const addToPlaylist = ({target}) => {
-//   //   setPlaylist((prev) => [prev..., target.value])
-//   // }
+function SearchResults() {
+  // const addToPlaylist = ({target}) => {
+  //   setPlaylist((prev) => [prev..., target.value])
+  // }
 
-//   const { searchResults } = useContext(SongContext);
+  const { SR } = useContext(SongsContext);
+  const [searchResults] = SR;
 
-//   return (
-//     <>
-//       {searchResults.map((song, i) => (
-//         <SongBox
-//           artist={song.artist}
-//           name={song.name}
-//           album={song.name}
-//           key={"searchSong_" + i}
-//         />
-//       ))}
-//     </>
-//   );
-// }
+  return (
+    <>
+      {searchResults.map((song, i) => (
+        <SongBox
+          artist={song.artist}
+          name={song.name}
+          album={song.name}
+          key={"searchSong_" + i}
+        />
+      ))}
+    </>
+  );
+}
 
-// export default SearchResults;
+export default SearchResults;
