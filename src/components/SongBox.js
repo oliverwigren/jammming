@@ -4,13 +4,20 @@ import { SongsContext } from "../context/SongsContextArea";
 
 function SongBox(props) {
   const { PL } = useContext(SongsContext);
-  const [playlist, setPlaylist] = PL;
+  const [, setPlaylist] = PL;
 
-  const handleOnClick = ({ target }) => {
+  // const handleOnClick = () => {
+  //   setPlaylist((prev) => {
+  //     return [{ album: "Water", name: "Hello", artist: "Adele" }, ...prev];
+  //   });
+  // };
+
+  const handleOnClick = () => {
     setPlaylist((prev) => {
-      return [{ album: "Water", name: "Hello", artist: "Adele" }, ...prev];
+      return [{ album: props.album, name: props.name, artist: props.artist }, ...prev];
     });
   };
+
 
   return (
     <div className={styles.div}>

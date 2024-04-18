@@ -57,6 +57,7 @@ function App() {
   return (
     <div className="App">
       <Header />
+      
       <SearchContextArea state={{ search, setSearch }}>
         <SearchBarArea />
       </SearchContextArea>
@@ -67,6 +68,7 @@ function App() {
       >
         <PlaylistArea />
         <SearchResultsArea />
+
       </SongsContextArea>
     </div>
   );

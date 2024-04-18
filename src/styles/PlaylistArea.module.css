@@ -1,4 +1,4 @@
-.section {
+/* .section {
     width: 30%;
     right: 5%;
     float: right;
@@ -7,4 +7,16 @@
     position: fixed;
     margin-top: -50px;
     background-color: blue;
+} */
+
+.section {
+    width: 30%;
+    right: 5%;
+    top: 25px;
+    float: right;
+    border: 1px solid black;
+    padding: 5px;
+    position: absolute;
+    background-color: blue;
+    height: fit-content;
 }

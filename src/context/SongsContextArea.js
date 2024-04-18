@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 
 export const SongsContext = React.createContext();
 
@@ -7,6 +7,7 @@ export const SongsContextArea = ({
   startValueSearchResults,
   startValuePlaylist,
 }) => {
+
   const [searchResults, setSearchResults] = useState(startValueSearchResults);
   const [playlist, setPlaylist] = useState(startValuePlaylist);
 

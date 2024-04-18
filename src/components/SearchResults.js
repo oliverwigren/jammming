@@ -8,7 +8,15 @@ function SearchResults() {
   // }
 
   const { SR } = useContext(SongsContext);
+  //const { PL } = useContext(SongsContext);
   const [searchResults] = SR;
+  //const [setPlaylist] = PL;
+
+  // const handleOnClick = ({ artist, name, album }) => {
+  //   setPlaylist((prev) => {
+  //     return [{ album: album, name: name, artist: artist }, ...prev];
+  //   });
+  // };
 
   return (
     <>
@@ -16,9 +24,10 @@ function SearchResults() {
         <SongBox
           artist={song.artist}
           name={song.name}
-          album={song.name}
+          album={song.album}
           key={"searchSong_" + i}
           id={song.id}
+          // [song.artist, song.name, song.album]}
         />
       ))}
     </>
