@@ -49,6 +49,9 @@ const searchResultSongs = [
 function App() {
   const [search, setSearch] = useState("");
 
+  // const [searchResults, setSearchResults] = useState(startValueSearchResults);
+  // const [playlist, setPlaylist] = useState(startValuePlaylist);
+
   //TODO: Fetch endpoint + search
 
   return (
@@ -57,16 +60,12 @@ function App() {
       <SearchContextArea state={{ search, setSearch }}>
         <SearchBarArea />
       </SearchContextArea>
+
       <SongsContextArea
         startValuePlaylist={playlistSongs}
         startValueSearchResults={searchResultSongs}
       >
         <PlaylistArea />
-      </SongsContextArea>
-      <SongsContextArea
-        startValuePlaylist={playlistSongs}
-        startValueSearchResults={searchResultSongs}
-      >
         <SearchResultsArea />
       </SongsContextArea>
     </div>
