@@ -18,6 +18,7 @@ function SearchResults() {
           name={song.name}
           album={song.name}
           key={"searchSong_" + i}
+          id={song.id}
         />
       ))}
     </>

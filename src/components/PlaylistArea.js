@@ -6,7 +6,9 @@ function PlaylistArea(props) {
   return (
     <section className={styles.section}>
       <p>Playlist</p>
-      <Playlist /*songs={props.songs}*/ />
+      <Playlist  />
+
+    
     </section>
   );
 }

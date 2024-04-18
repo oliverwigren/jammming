@@ -16,6 +16,7 @@ function Playlist(props) {
           artist={song.artist}
           album={song.album}
           key={"playlistSong_" + i}
+          id={song.id}
         />
       ))}
     </div>
