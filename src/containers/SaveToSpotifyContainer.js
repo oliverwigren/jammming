@@ -7,22 +7,40 @@ function SaveToSpotifyContainer() {
   const [playlist] = PL;
   const [name] = PN;
 
-  const user_id = "oliv";
+  const baseURL = "https://api.spotify.com/v1/";
+
+  const getUserId = () => {
+    try {
+      const response = fetch(`${baseURL}/me`);
+      if (response.ok) {
+        return response.json().id;
+      }
+      else {
+        throw new Error("Couldn't find user.")
+      }
+    } catch (err) {
+      throw new Error(err);
+    }
+  };
+
+  const user_id = 'oliv'//getUserId();
+
   let uris = [];
 
   playlist.forEach((song) => {
     uris.push(song.uri);
   });
 
-  const baseURL = "https://api.spotify.com/";
-
   const createPlaylist = async () => {
     try {
       const response = await fetch(`${baseURL}users/${user_id}/playlists`, {
         method: "POST",
-        body: {
+        body: JSON.stringify({
           name: name,
-          description: "This playlist was made with Jammming!",
+          description: "This playlist was made with Jammming!", //TODO: FIX
+        }),
+        headers: {
+          "Content-Type": "application/json",
         },
       });
       if (response.ok) {
@@ -43,6 +61,9 @@ function SaveToSpotifyContainer() {
           body: {
             uris: uris.json(),
           },
+          headers: {
+            "Content-Type": "application/json",
+          },
         }
       );
       if (response.ok) {
@@ -60,7 +81,7 @@ function SaveToSpotifyContainer() {
     addToPlaylist(playlist_id);
   };
 
-  return <SaveToSpotify onClick={handleClick}/>
+  return <SaveToSpotify onClick={handleClick} />;
 }
 
 export default SaveToSpotifyContainer;
