@@ -6,6 +6,8 @@ export const SongsContextArea = ({
   children,
   startValueSearchResults,
   startValuePlaylist,
+  name,
+  setName,
 }) => {
 
   const [searchResults, setSearchResults] = useState(startValueSearchResults);
@@ -16,6 +18,7 @@ export const SongsContextArea = ({
       value={{
         PL: [playlist, setPlaylist],
         SR: [searchResults, setSearchResults],
+        PN: [name, setName],
       }}
     >
       {children}

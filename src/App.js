@@ -55,6 +55,8 @@ const searchResultSongs = [
 function App() {
   const [search, setSearch] = useState("");
 
+  const [name, setName] = useState("Playlist");
+
   // const [searchResults, setSearchResults] = useState(startValueSearchResults);
   // const [playlist, setPlaylist] = useState(startValuePlaylist);
 
@@ -71,6 +73,8 @@ function App() {
       <SongsContextArea
         startValuePlaylist={playlistSongs}
         startValueSearchResults={searchResultSongs}
+        name= {name}
+        setName={setName}
       >
         <PlaylistArea />
         <SearchResultsArea />
