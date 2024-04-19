@@ -1,22 +1,22 @@
 import React, { useState, useContext } from "react";
 import styles from "../styles/AddedSong.module.css";
-import { PlaylistSongContext } from "../context/PlaylistSongContextArea";
+//import { PlaylistSongContext } from "../context/PlaylistSongContextArea";
 import { SongsContext } from "../context/SongsContextArea";
 
 function AddedSong(props) {
   const [isButtonClick, setButtonClick] = useState(false);
 
+  const { PL } = useContext(SongsContext);
+  const [, setPlaylist] = PL;
+
   const handleOnClick = (e) => {
-    removeSongFromPlaylist(e);
-    setButtonClick(true);
+    //setButtonClick(true); //TODO: Fix slide out
+    removeSongFromPlaylist();
   };
 
-  const { PL } = useContext(SongsContext);
-  const [playlist, setPlaylist] = PL;
-
-  const removeSongFromPlaylist = ({ target }) => {
+  const removeSongFromPlaylist = () => {
     setPlaylist((prev) => {
-      prev.filter(({ id }) => props.id !== id);
+      return prev.filter(({ id }) => props.id !== id);
     });
   };
 

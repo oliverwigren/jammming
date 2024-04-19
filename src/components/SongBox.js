@@ -6,18 +6,13 @@ function SongBox(props) {
   const { PL } = useContext(SongsContext);
   const [playlist, setPlaylist] = PL;
 
+  const isSongInPlaylist = playlist.some(song => song.id === props.id);
+
   const handleOnClick = () => {
-    // Checks if song already exists in playlis
-    let songAlreadyExists = false;
+    // Checks if song already exists in playlist
+    
 
-    playlist.forEach((song) => {
-      if (song.id === props.id) {
-        songAlreadyExists = true;
-        return;
-      }
-    });
-
-    if (!songAlreadyExists) {
+    if (!isSongInPlaylist) {
       setPlaylist((prev) => {
         return [
           {
@@ -39,7 +34,7 @@ function SongBox(props) {
         <span>{props.artist}</span> - <span>{props.album}</span>
       </p>
       <button onClick={handleOnClick} className={styles.button}>
-        + {/* Check if in playlist, if so change + to a check mark */}
+        {isSongInPlaylist ? 'A' : '+'}
       </button>
     </div>
   );
