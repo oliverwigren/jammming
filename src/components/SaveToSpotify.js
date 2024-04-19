@@ -1,12 +1,13 @@
-import React from "react";
-import styles from '../styles/SaveToSpotify.module.css';
+import React, { useContext } from "react";
+import styles from "../styles/SaveToSpotify.module.css";
+//import { SongsContext } from "../context/SongsContextArea";
 
-function SaveToSpotify() {
-    return (
-        <button className={styles.button}>
-            Save To Spotify
-        </button>
-    )
+function SaveToSpotify({onClick}) {
+  return (
+    <button onClick={onClick} className={styles.button}>
+      Save To Spotify
+    </button>
+  );
 }
 
 export default SaveToSpotify;

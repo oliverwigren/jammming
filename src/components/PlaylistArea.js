@@ -1,8 +1,9 @@
 import React from "react";
 import styles from "../styles/PlaylistArea.module.css";
 import Playlist from "./Playlist";
-import SaveToSpotify from "./SaveToSpotify";
+//import SaveToSpotify from "./SaveToSpotify";
 import PlaylistName from "./PlaylistName";
+import SaveToSpotifyContainer from "../containers/SaveToSpotifyContainer";
 
 function PlaylistArea(props) {
   return (
@@ -11,7 +12,7 @@ function PlaylistArea(props) {
 
       <Playlist />
 
-      <SaveToSpotify />
+      <SaveToSpotifyContainer />
     </section>
   );
 }
