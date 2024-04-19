@@ -12,10 +12,12 @@ The purpose of this project was to use well-used React functions as useState, us
 
 ## Technologies used <a name="tech"></a>
 - JavaScript
-- React
-- HTML
-- CSS
+- React.js
 - Spotify API
+- HTML/CSS
+- REST API
+- Git
+- OAuth 2.0
 
 ## Features <a name="features"></a>
 - Searching for songs by song title in the Spotify library
