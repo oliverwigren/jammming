@@ -13,8 +13,9 @@ function SongBox(props) {
   // };
 
   const handleOnClick = () => {
+    // TODO: Kolla om låten redan finns i playlist
     setPlaylist((prev) => {
-      return [{ album: props.album, name: props.name, artist: props.artist }, ...prev];
+      return [{ album: props.album, name: props.name, artist: props.artist, id: props.id }, ...prev];
     });
   };
 

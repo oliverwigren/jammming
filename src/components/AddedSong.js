@@ -11,16 +11,13 @@ function AddedSong(props) {
     setButtonClick(true);
   };
 
-  //const { playlist, setPlaylist } = useContext(PlaylistSongContext);
   const { PL } = useContext(SongsContext);
   const [playlist, setPlaylist] = PL;
 
   const removeSongFromPlaylist = ({ target }) => {
-    // setInfo((prev) => {
-    //   prev.filter((song) => {
-    //     return song.name === target.value;
-    //   })
-    // })
+    setInfo((prev) => {
+      prev.filter(({ id }) => props.id !== id);
+    });
   };
 
   return (
