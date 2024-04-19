@@ -15,7 +15,7 @@ function AddedSong(props) {
   const [playlist, setPlaylist] = PL;
 
   const removeSongFromPlaylist = ({ target }) => {
-    setInfo((prev) => {
+    setPlaylist((prev) => {
       prev.filter(({ id }) => props.id !== id);
     });
   };

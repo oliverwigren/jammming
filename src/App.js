@@ -15,7 +15,7 @@ const playlistSongs = [
     artist: "Kent",
     name: "Svart Snö",
     album: "Tigerdrottningen",
-    id: 1,
+    id: 4,
   },
   {
     artist: "Ted",
@@ -42,10 +42,10 @@ const searchResultSongs = [
     artist: "Ted",
     name: "Jag vill ha en egen Måne",
     album: "Undringar",
-    id: 5,
+    id: 2,
   },
   {
-    artist: "AKI, Kapten Röd", // ARRAY
+    artist: "AKI, Kapten Röd", // ? ARRAY 
     name: "När solen går ner",
     album: "När solen går ner",
     id: 6,

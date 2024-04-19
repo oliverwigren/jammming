@@ -4,21 +4,33 @@ import { SongsContext } from "../context/SongsContextArea";
 
 function SongBox(props) {
   const { PL } = useContext(SongsContext);
-  const [, setPlaylist] = PL;
-
-  // const handleOnClick = () => {
-  //   setPlaylist((prev) => {
-  //     return [{ album: "Water", name: "Hello", artist: "Adele" }, ...prev];
-  //   });
-  // };
+  const [playlist, setPlaylist] = PL;
 
   const handleOnClick = () => {
-    // TODO: Kolla om låten redan finns i playlist
-    setPlaylist((prev) => {
-      return [{ album: props.album, name: props.name, artist: props.artist, id: props.id }, ...prev];
-    });
-  };
+    // Checks if song already exists in playlis
+    let songAlreadyExists = false;
 
+    playlist.forEach((song) => {
+      if (song.id === props.id) {
+        songAlreadyExists = true;
+        return;
+      }
+    });
+
+    if (!songAlreadyExists) {
+      setPlaylist((prev) => {
+        return [
+          {
+            album: props.album,
+            name: props.name,
+            artist: props.artist,
+            id: props.id,
+          },
+          ...prev,
+        ];
+      });
+    }
+  };
 
   return (
     <div className={styles.div}>
@@ -27,7 +39,7 @@ function SongBox(props) {
         <span>{props.artist}</span> - <span>{props.album}</span>
       </p>
       <button onClick={handleOnClick} className={styles.button}>
-        +
+        + {/* Check if in playlist, if so change + to a check mark */}
       </button>
     </div>
   );
