@@ -25,6 +25,6 @@ The purpose of this project was to use well-used React functions as useState, us
 - Ability to add playlist to user's Spotify account
 
 ## Future work <a name="future"></a>
-- [ ] Better design
+- [ ] Responsive for different screen sizes
 - [ ] Ability to search for songs by artist
 - [ ] Random song lyrics as placeholder in search bar
