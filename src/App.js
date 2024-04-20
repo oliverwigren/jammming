@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Header from "./components/Header";
 import SearchBarArea from "./components/SearchBarArea";
 import "./App.css";
@@ -7,8 +7,9 @@ import SearchResultsArea from "./components/SearchResultsArea";
 //import { PlaylistSongContextArea } from "./context/PlaylistSongContextArea";
 import { SongsContextArea } from "./context/SongsContextArea";
 import { SearchContextArea } from "./context/SearchContextArea";
+import GetAccessToken from "./components/GetAccessToken";
 
-
+// GetAccessToken('https://accounts.spotify.com/api/token');
 
 // TODO: Ta in data från API
 const data = {
@@ -270,6 +271,8 @@ let playlistSongs = [
 // ];
 
 function App() {
+  useEffect(GetAccessToken('https://accounts.spotify.com/api/token'),[]);
+
   // Formatting data from API to simpler array of only the necessary values.
   const searchResultSongs = data.tracks.items.map(({artists, name, album, uri, id}) => {
     return {
