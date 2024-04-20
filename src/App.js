@@ -47,7 +47,7 @@ const data = {
               "width": 64
             }
           ],
-          "name": "The '59 Sound",
+          "name": "Tigerdrottningen",
           "release_date": "2009-08-19",
           "release_date_precision": "day",
           "type": "album",
@@ -72,7 +72,7 @@ const data = {
             },
             "href": "https://api.spotify.com/v1/artists/7If8DXZN7mlGdQkLE2FaMo",
             "id": "7If8DXZN7mlGdQkLE2FaMo",
-            "name": "The Gaslight Anthem",
+            "name": "Kent",
             "type": "artist",
             "uri": "spotify:artist:7If8DXZN7mlGdQkLE2FaMo"
           }
@@ -89,12 +89,12 @@ const data = {
         },
         "href": "https://api.spotify.com/v1/tracks/2bKjpm9nmsfKaE3sLq1scQ",
         "id": "2bKjpm9nmsfKaE3sLq1scQ",
-        "name": "Miles Davis & The Cool",
+        "name": "Var är vi nu?",
         "popularity": 38,
         "preview_url": "https://p.scdn.co/mp3-preview/3d2910523296d8670ff399fc43e97aed491bdee1?cid=cfe923b2d660439caf2b557b21f31221",
         "track_number": 6,
         "type": "track",
-        "uri": "spotify:track:2bKjpm9nmsfKaE3sLq1scQ",
+        "uri": "spotify:track:7qfnGMiBSbTbrABfqJ2AXV",
         "is_local": false
       },
       {
@@ -231,10 +231,10 @@ const data = {
 let playlistSongs = [
   {
     artist: "Kent",
-    name: "Svart Snö",
+    name: "Svart snö",
     album: "Tigerdrottningen",
     id: 1,
-    uri: 'spotify:track:6rqhFgbbKwnb9MLmGQDhG6',
+    uri: 'spotify:track:3g2FEGXN4Nh0qZ8FtqbS42',
   },
   {
     artist: "Ted",

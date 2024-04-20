@@ -10,6 +10,7 @@
 }
 .b {
     font-size: 1.25rem;
+    white-space: nowrap;
 }
 .desc {
     margin: 0;
