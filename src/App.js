@@ -1052,6 +1052,7 @@ function App() {
         startValueSearchResults={searchResultSongs}
         name={name}
         setName={setName}
+        token={accessToken}
       >
         <PlaylistArea />
         <SearchResultsArea />

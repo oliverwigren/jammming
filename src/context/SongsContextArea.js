@@ -8,6 +8,7 @@ export const SongsContextArea = ({
   startValuePlaylist,
   name,
   setName,
+  token,
 }) => {
 
   const [searchResults, setSearchResults] = useState(startValueSearchResults);
@@ -19,6 +20,7 @@ export const SongsContextArea = ({
         PL: [playlist, setPlaylist],
         SR: [searchResults, setSearchResults],
         PN: [name, setName],
+        AT: [token],
       }}
     >
       {children}
