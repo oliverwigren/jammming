@@ -1,29 +1,43 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import styles from "../styles/SearchBar.module.css";
 import { SearchContext } from "../context/SearchContextArea";
 
 function SearchBar() {
-  const { search, setSearch } = useContext(SearchContext);
+  const { search, setSearch, token } = useContext(SearchContext);
+  const [searchWord, setSearchWord] = useState("");
+  const [generate, setGenerate] = useState(false);
 
-  const getData = async (searchWord) => {
-    try {
-      const response = await fetch('https://api.spotify.com/v1/search?type=TRACK', {
-        q: searchWord,
-      })
-      if (response.ok) {
-        return await response.json()
+  useEffect(() => {
+    alert(token);
+    const getData = async () => {
+      try {
+        const response = await fetch(
+          "https://api.spotify.com/v1/search/",
+          {
+            q: searchWord,
+            type: ["track"],
+            headers: {
+              Authorization: "Bearer " + token,
+            },
+          }
+        );
+        if (response.ok) {
+          const data = await response.json();
+          setSearch(data);
+        }
+      } catch (error) {
+        throw new Error(error);
       }
-    } catch(error) {
-      throw new Error(error)
-    }
-  }
+    };
+
+    getData();
+  }, [generate]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const searchWord = e.target.getElementsByTagName('input')[0].value;
-
-    setSearch(getData(searchWord));
+    setSearchWord(e.target.getElementsByTagName("input")[0].value);
+    setGenerate(!generate);
   };
 
   return (

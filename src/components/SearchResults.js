@@ -8,9 +8,8 @@ function SearchResults() {
   // }
 
   const { SR } = useContext(SongsContext);
-  //const { PL } = useContext(SongsContext);
+  //const token = useContext(SongsContext);
   const [searchResults] = SR;
-  //const [setPlaylist] = PL;
 
   // const handleOnClick = ({ artist, name, album }) => {
   //   setPlaylist((prev) => {

@@ -1041,7 +1041,7 @@ function App() {
     <div className="App">
       <Header />
 
-      <SearchContextArea state={{ search, setSearch }}>
+      <SearchContextArea state={{ search, setSearch, accessToken }}>
         <SearchBarArea />
       </SearchContextArea>
 
