@@ -21,6 +21,7 @@ export const SongsContextArea = ({
         SR: [searchResults, setSearchResults],
         PN: [name, setName],
         AT: [token],
+        SVT: [startValueSearchResults]
       }}
     >
       {children}

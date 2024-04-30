@@ -7,9 +7,10 @@ function SearchResults() {
   //   setPlaylist((prev) => [prev..., target.value])
   // }
 
-  const { SR } = useContext(SongsContext);
+  const { SR, SVT } = useContext(SongsContext);
   //const token = useContext(SongsContext);
   const [searchResults] = SR;
+  const [startValueSearchResults] = SVT
 
   // const handleOnClick = ({ artist, name, album }) => {
   //   setPlaylist((prev) => {
@@ -19,7 +20,7 @@ function SearchResults() {
 
   return (
     <>
-      {searchResults.map((song, i) => (
+      {startValueSearchResults.map((song, i) => (
         <SongBox
           artist={song.artist}
           name={song.name}

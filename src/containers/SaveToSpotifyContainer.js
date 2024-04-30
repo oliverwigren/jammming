@@ -14,59 +14,59 @@ function SaveToSpotifyContainer() {
 
   let uris = [];
 
-  playlist.forEach((song) => {
-    uris.push(song.uri);
-  });
+  // playlist.forEach((song) => {
+  //   uris.push(song.uri);
+  // });
 
   const baseURL = "https://api.spotify.com/v1/";
-  useEffect(() => {
-    // Get user id
-    const getUserId = async () => {
-      try {
-        const response = await fetch(`${baseURL}me`, {
-          headers: { Authorization: "Bearer " + token },
-        });
-        if (response.ok) {
-          const data = await response.json();
-          await setUserId(data.id);
-        } else {
-          console.log("Couldn't find user.");
-        }
-      } catch (err) {
-        console.log(err);
-      }
-    };
-    if (userId === null) {
-      getUserId();
-    }
+  // useEffect(() => {
+  //   // Get user id
+  //   const getUserId = async () => {
+  //     try {
+  //       const response = await fetch(`${baseURL}me`, {
+  //         headers: { Authorization: "Bearer " + token },
+  //       });
+  //       if (response.ok) {
+  //         const data = await response.json();
+  //         await setUserId(data.id);
+  //       } else {
+  //         console.log("Couldn't find user.");
+  //       }
+  //     } catch (err) {
+  //       console.log(err);
+  //     }
+  //   };
+  //   if (userId === null) {
+  //     getUserId();
+  //   }
 
-    // Create Playlist
-    const createPlaylist = async () => {
-      try {
-        const response = await fetch(`${baseURL}users/${userId}/playlists`, {
-          method: "POST",
-          body: JSON.stringify({
-            name: name,
-            description: "This playlist was made with Jammming!", //TODO: FIX
-          }),
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-        });
-        if (response.ok) {
-          const data = await response.json();
-          await setPlaylistId(data.id)
-        }
-        console.log("Couldn't create playlist.");
-      } catch (err) {
-        console.log(err)
-      }
-    };
-    if (playlistId === null || userId === null) {
-      createPlaylist()
-    }
-  }, [click]);
+  //   // Create Playlist
+  //   const createPlaylist = async () => {
+  //     try {
+  //       const response = await fetch(`${baseURL}users/${userId}/playlists`, {
+  //         method: "POST",
+  //         body: JSON.stringify({
+  //           name: name,
+  //           description: "This playlist was made with Jammming!", //TODO: FIX
+  //         }),
+  //         headers: {
+  //           "Content-Type": "application/json",
+  //           Authorization: `Bearer ${token}`,
+  //         },
+  //       });
+  //       if (response.ok) {
+  //         const data = await response.json();
+  //         await setPlaylistId(data.id)
+  //       }
+  //       console.log("Couldn't create playlist.");
+  //     } catch (err) {
+  //       console.log(err)
+  //     }
+  //   };
+  //   if (playlistId === null || userId === null) {
+  //     createPlaylist()
+  //   }
+  // }, [click]);
 
   // const addToPlaylist = async ({ id }) => {
   //   try {

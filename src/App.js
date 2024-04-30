@@ -9,7 +9,7 @@ import { SongsContextArea } from "./context/SongsContextArea";
 import { SearchContextArea } from "./context/SearchContextArea";
 import SpotifyAuth from "./components/SpotifyAuth";
 
-// TODO: Ta in data från API
+/*
 const data = {
   tracks: {
     href: "https://api.spotify.com/v1/search?query=remaster%2520track%3ADoxy%2520artist%3AMiles%2520Davis&type=track&locale=sv-SE%2Csv%3Bq%3D0.9&offset=0&limit=2",
@@ -974,7 +974,7 @@ const data = {
     ],
   },
 };
-
+*/
 let playlistSongs = [
   {
     artist: "Kent",
@@ -1016,26 +1016,48 @@ let playlistSongs = [
 //   },
 // ];
 
-
 function App() {
   //cb64326a23414ed7a9cfca9afb18f6d8
 
   const [accessToken, setAccessToken] = useState(null);
   const [search, setSearch] = useState("");
   const [name, setName] = useState("Playlist");
+  const [results, setResults] = useState([]);
 
-  // Formatting data from API to simpler array of only the necessary values.
-  const searchResultSongs = /*search istället för data*/ data.tracks.items.map(
-    ({ artists, name, album, uri, id }) => {
-      return {
-        artist: artists[0].name,
-        name: name,
-        album: album.name,
-        uri: uri,
-        id: id,
-      };
+  useEffect(() => {
+    // let searchResultSongs = /*search istället för data*/ data.tracks.items.map(
+    //   ({ artists, name, album, uri, id }) => {
+    //     return {
+    //       artist: artists[0].name,
+    //       name: name,
+    //       album: album.name,
+    //       uri: uri,
+    //       id: id,
+    //     };
+    //   }
+    // );
+
+    // Formatting data from API to simpler array of only the necessary values.
+    if (results !== null && search) {
+      try {
+        let searchResultSongs =
+          /*search istället för data*/ search.tracks.items.map(
+            ({ artists, name, album, uri, id }) => {
+              return {
+                artist: artists[0].name,
+                name: name,
+                album: album.name,
+                uri: uri,
+                id: id,
+              };
+            }
+          );
+        setResults(searchResultSongs);
+      } catch (err) {
+        console.log(err);
+      }
     }
-  );
+  }, [search]);
 
   return (
     <div className="App">
@@ -1049,7 +1071,7 @@ function App() {
 
       <SongsContextArea
         startValuePlaylist={playlistSongs}
-        startValueSearchResults={searchResultSongs}
+        startValueSearchResults={results} //{searchResultSongs}
         name={name}
         setName={setName}
         token={accessToken}

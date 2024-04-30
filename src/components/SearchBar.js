@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState, useRef } from "react";
 import styles from "../styles/SearchBar.module.css";
 import { SearchContext } from "../context/SearchContextArea";
 
@@ -6,18 +6,21 @@ function SearchBar() {
   const { search, setSearch, token } = useContext(SearchContext);
   const [searchWord, setSearchWord] = useState("");
   const [generate, setGenerate] = useState(false);
+  const loaded = useRef(false)
 
   useEffect(() => {
-    alert(token);
+    //alert(token) TODO: Alltid undefined
     const getData = async () => {
+
+      setSearchWord(document.getElementsByTagName("input")[0].value);
+      //alert("GetData")
       try {
+        let hello = searchWord
         const response = await fetch(
-          "https://api.spotify.com/v1/search/",
+          `https://api.spotify.com/v1/search?q=${hello}&type=track&limit=10`,
           {
-            q: searchWord,
-            type: ["track"],
             headers: {
-              Authorization: "Bearer " + token,
+              Authorization: "Bearer BQBMn0JeCcxzF3G1zUzvC37E3YDPKD9fPWpVpBBu9ZQdDW1KZtmDR35v68ldhEioCwQN0HeCsbRwSoQOSuDTPQzuAzVvMpY9SCBytN4E6oc0bG2zQ9Dy3l5jtbVnG8zsEksgb31bWAYacz8oUf9A6ekUDFUvKvjU7vawxE01wYpthpYSica9BcgVBI3EXHYBx92j-jvClk0_89xKr0I" //"Bearer " + token,
             },
           }
         );
@@ -29,14 +32,17 @@ function SearchBar() {
         throw new Error(error);
       }
     };
+if (loaded.current) {
+  getData();
 
-    getData();
+}
+  loaded.current = true
+
   }, [generate]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    setSearchWord(e.target.getElementsByTagName("input")[0].value);
     setGenerate(!generate);
   };
 
