@@ -6,21 +6,18 @@ function SearchBar() {
   const { search, setSearch, token } = useContext(SearchContext);
   const [searchWord, setSearchWord] = useState("");
   const [generate, setGenerate] = useState(false);
-  const loaded = useRef(false)
+  const loaded = useRef(false);
 
   useEffect(() => {
-    //alert(token) TODO: Alltid undefined
-    const getData = async () => {
-
-      setSearchWord(document.getElementsByTagName("input")[0].value);
-      //alert("GetData")
+    //alert(token) TODO: Token är alltid undefined
+    const getData = async (searchWord) => {
       try {
-        let hello = searchWord
         const response = await fetch(
-          `https://api.spotify.com/v1/search?q=${hello}&type=track&limit=10`,
+          `https://api.spotify.com/v1/search?q=${searchWord}&type=track&limit=10`,
           {
             headers: {
-              Authorization: "Bearer BQBMn0JeCcxzF3G1zUzvC37E3YDPKD9fPWpVpBBu9ZQdDW1KZtmDR35v68ldhEioCwQN0HeCsbRwSoQOSuDTPQzuAzVvMpY9SCBytN4E6oc0bG2zQ9Dy3l5jtbVnG8zsEksgb31bWAYacz8oUf9A6ekUDFUvKvjU7vawxE01wYpthpYSica9BcgVBI3EXHYBx92j-jvClk0_89xKr0I" //"Bearer " + token,
+              Authorization:
+                "Bearer BQASlPEgQ367-UjS6o3s4oMBjEl3zWCusCWsZHBb101mfCtn6iWh8itd947qPeNcxWEGGzLYalOyIg1ttlUj28OW51JsZAfnDnefSbQSTBQXppNsR795wvn9uOKKjXIrIQCx17LIsL512m2_W4WhXdcXVOlAzyH-lGtjgwoQVZyN0j26TEHa1izArr9afynXlVCD1Ero8nZa6oONb5U", //Bearer " + token,
             },
           }
         );
@@ -32,18 +29,20 @@ function SearchBar() {
         throw new Error(error);
       }
     };
-if (loaded.current) {
-  getData();
-
-}
-  loaded.current = true
-
+    if (loaded.current) {
+      getData(searchWord);
+    }
+    loaded.current = true;
   }, [generate]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
     setGenerate(!generate);
+  };
+
+  const handleChange = ({ target }) => {
+    setSearchWord(target.value);
   };
 
   return (
@@ -55,6 +54,7 @@ if (loaded.current) {
           name="search"
           required
           placeholder="Search for a song"
+          onChange={handleChange}
         />
         <button className={styles.button} type="submit">
           Search
