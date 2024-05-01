@@ -3,21 +3,23 @@ import styles from "../styles/SearchBar.module.css";
 import { SearchContext } from "../context/SearchContextArea";
 
 function SearchBar() {
-  const { search, setSearch, token } = useContext(SearchContext);
+  const { search, setSearch, accessToken } = useContext(SearchContext);
   const [searchWord, setSearchWord] = useState("");
   const [generate, setGenerate] = useState(false);
   const loaded = useRef(false);
 
   useEffect(() => {
-    //alert(token) TODO: Token är alltid undefined
-    const getData = async (searchWord) => {
+    //alert("1, " +accessToken) //TODO: Token är alltid undefined
+    const getData = async (searchWord, aToken) => {
+      //alert("2, " +accessToken)
       try {
         const response = await fetch(
           `https://api.spotify.com/v1/search?q=${searchWord}&type=track&limit=10`,
           {
             headers: {
               Authorization:
-                "Bearer BQASlPEgQ367-UjS6o3s4oMBjEl3zWCusCWsZHBb101mfCtn6iWh8itd947qPeNcxWEGGzLYalOyIg1ttlUj28OW51JsZAfnDnefSbQSTBQXppNsR795wvn9uOKKjXIrIQCx17LIsL512m2_W4WhXdcXVOlAzyH-lGtjgwoQVZyN0j26TEHa1izArr9afynXlVCD1Ero8nZa6oONb5U", //Bearer " + token,
+                //"Bearer BQASlPEgQ367-UjS6o3s4oMBjEl3zWCusCWsZHBb101mfCtn6iWh8itd947qPeNcxWEGGzLYalOyIg1ttlUj28OW51JsZAfnDnefSbQSTBQXppNsR795wvn9uOKKjXIrIQCx17LIsL512m2_W4WhXdcXVOlAzyH-lGtjgwoQVZyN0j26TEHa1izArr9afynXlVCD1Ero8nZa6oONb5U", 
+                "Bearer " + aToken,
             },
           }
         );
@@ -30,7 +32,7 @@ function SearchBar() {
       }
     };
     if (loaded.current) {
-      getData(searchWord);
+      getData(searchWord, accessToken);
     }
     loaded.current = true;
   }, [generate]);
