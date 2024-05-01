@@ -88,7 +88,7 @@ function SaveToSpotifyContainer() {
           {
             method: "POST",
             body: JSON.stringify({ 
-              uris: uris,
+              uris: urier,
             }),
             headers: {
               "Content-Type": "application/json",

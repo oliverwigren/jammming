@@ -27,6 +27,7 @@ function SearchResults() {
           album={song.album}
           key={"searchSong_" + i}
           id={song.id}
+          uri={song.uri}
           // [song.artist, song.name, song.album]}
         />
       ))}

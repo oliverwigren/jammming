@@ -20,6 +20,7 @@ function SongBox(props) {
             name: props.name,
             artist: props.artist,
             id: props.id,
+            uri: props.uri
           },
           ...prev,
         ];
