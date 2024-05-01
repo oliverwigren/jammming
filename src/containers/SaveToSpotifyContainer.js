@@ -43,15 +43,16 @@ function SaveToSpotifyContainer() {
     // Create Playlist
     const createPlaylist = async (id, token) => {
       try {
+        //TODO: id är null, första gången
         const response = await fetch(
           `https://api.spotify.com/v1/users/${id}/playlists`,
           {
             method: "POST",
-            body: {
-              name: name,
+            body: JSON.stringify({
+              name: "Jammming",
               description: "This playlist was made with Jammming!",
               public: false,
-            },
+            }),
             headers: {
               "Content-Type": "application/json",
               Authorization: `Bearer ${token}`,
@@ -67,7 +68,7 @@ function SaveToSpotifyContainer() {
         console.log(err);
       }
     };
-    if (playlistId === null || userId === null) {
+    if (playlistId === null && userId !== null) {
       createPlaylist(userId, token);
     }
   }, [click]);
