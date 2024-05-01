@@ -16,7 +16,7 @@ const SpotifyAuth = (props) => {
   const generateAccessToken = () => {
     const clientId = 'cb64326a23414ed7a9cfca9afb18f6d8'; // Replace with your Spotify Client ID
     const redirectUri = 'http://localhost:3000/callback'; // Replace with your redirect URI
-    const scopes = ['user-read-private', 'user-read-email']; // Add the scopes you need
+    const scopes = ['user-read-private', 'user-read-email', 'playlist-modify-private', 'playlist-modify-public']; // Add the scopes you need
 
     const queryParams = {
       client_id: clientId,
