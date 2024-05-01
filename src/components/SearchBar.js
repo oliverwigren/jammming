@@ -8,19 +8,18 @@ function SearchBar() {
   const [generate, setGenerate] = useState(false);
   const loaded = useRef(false);
 
-  //TODO: Clean up
   //TODO: Inte köras på första iteration
   //TODO: Comments
 
   useEffect(() => {
-    const getData = async (searchWord, aToken) => {
+    const getData = async (searchWord, token) => {
       try {
         const response = await fetch(
           `https://api.spotify.com/v1/search?q=${searchWord}&type=track&limit=10`,
           {
             headers: {
               Authorization:
-                "Bearer " + aToken,
+                "Bearer " + token,
             },
           }
         );
