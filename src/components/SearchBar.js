@@ -12,6 +12,7 @@ function SearchBar() {
   //TODO: Comments
 
   useEffect(() => {
+    // Gets tracks from Spotify with the search word inputted
     const getData = async (searchWord, token) => {
       try {
         const response = await fetch(
@@ -39,7 +40,7 @@ function SearchBar() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
+    
     setGenerate(!generate);
   };
 
