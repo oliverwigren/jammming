@@ -977,17 +977,17 @@ const data = {
 */
 let playlistSongs = [
   {
-    artist: "Kent",
+    artist: "kent",
     name: "Svart snö",
     album: "Tigerdrottningen",
-    id: 1,
+    id: '3g2FEGXN4Nh0qZ8FtqbS42',
     uri: "spotify:track:3g2FEGXN4Nh0qZ8FtqbS42",
   },
   {
     artist: "Ted",
     name: "Jag vill ha en egen Måne",
     album: "Undringar",
-    id: 2,
+    id: '4LqNNFPl9lfT5deIQiRPwI',
     uri: "spotify:track:6RqhFgbbKwnb9MLmUQDhG7",
   },
 ];
