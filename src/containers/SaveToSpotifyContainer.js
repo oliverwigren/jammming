@@ -12,13 +12,13 @@ function SaveToSpotifyContainer() {
   const [click, setClick] = useState(false);
   const [playlistId, setPlaylistId] = useState(null);
 
-  let uris = [];
+  //let uris = [];
 
-  // playlist.forEach((song) => {
-  //   uris.push(song.uri);
-  // });
+  
 
   useEffect(() => {
+    //TODO: Fixa ett flow (if else)
+
     // Get user id
     const getUserId = async (token) => {
       try {
@@ -41,7 +41,7 @@ function SaveToSpotifyContainer() {
     }
 
     // Create Playlist
-    const createPlaylist = async (id, token) => {
+    const createPlaylist = async (id, token, name) => {
       try {
         //TODO: id är null, första gången
         const response = await fetch(
@@ -49,7 +49,7 @@ function SaveToSpotifyContainer() {
           {
             method: "POST",
             body: JSON.stringify({
-              name: "Jammming",
+              name: name,
               description: "This playlist was made with Jammming!",
               public: false,
             }),
@@ -69,33 +69,45 @@ function SaveToSpotifyContainer() {
       }
     };
     if (playlistId === null && userId !== null) {
-      createPlaylist(userId, token);
+      createPlaylist(userId, token, name);
+    }
+
+    const addToPlaylist = async (playlistId, token, playlist) => {
+      //TODO: Inte lägga till dubbletter
+      let uris = ['spotify:track:4qjWcGhRQ28WEYuLDZ4aAR', 'spotify:track:4ezYPVfghVzIA1yVjQnZkk']
+      let urier = []
+      console.log("Playlist: " + playlist)
+      playlist.forEach((song) => {
+        urier.push(song.uri);
+      });
+      console.log("Playlist urier: " + urier)
+
+      try {
+        const response = await fetch(
+          `https://api.spotify.com/v1/playlists/${playlistId}/tracks`,
+          {
+            method: "POST",
+            body: JSON.stringify({ 
+              uris: uris,
+            }),
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        if (response.ok) {
+          return 0;
+        }
+        console.log("Couldn't add tracks to playlist.");
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    if (playlistId !== null) {
+      addToPlaylist(playlistId, token, playlist);
     }
   }, [click]);
-
-  // const addToPlaylist = async ({ id }) => {
-  //   try {
-  //     const response = await fetch(
-  //       `${baseURL}users/${user_id}/playlists/${id}tracks`,
-  //       {
-  //         method: "POST",
-  //         body: {
-  //           uris: uris,
-  //         },
-  //         headers: {
-  //           "Content-Type": "application/json",
-  //           Authorization: `Bearer ${token}`
-  //         },
-  //       }
-  //     );
-  //     if (response.ok) {
-  //       return 0;
-  //     }
-  //     throw new Error("Couldn't add tracks to playlist.");
-  //   } catch (err) {
-  //     throw new Error(err);
-  //   }
-  // };
 
   const handleClick = () => {
     setClick(!click);
