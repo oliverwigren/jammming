@@ -4,21 +4,16 @@ import { SongsContext } from "../context/SongsContextArea";
 
 function SaveToSpotifyContainer() {
   const { PL, PN, AT } = useContext(SongsContext);
-  const [playlist] = PL;
+  const [playlist, setPlaylist] = PL;
   const [name] = PN;
   const [token] = AT;
 
   const [userId, setUserId] = useState(null);
   const [click, setClick] = useState(false);
   const [playlistId, setPlaylistId] = useState(null);
-
-  //let uris = [];
-
-  
+  const [uris, setUris] = useState([]);
 
   useEffect(() => {
-    //TODO: Fixa ett flow (if else)
-
     // Get user id
     const getUserId = async (token) => {
       try {
@@ -72,42 +67,51 @@ function SaveToSpotifyContainer() {
       createPlaylist(userId, token, name);
     }
 
-    const addToPlaylist = async (playlistId, token, playlist) => {
+    const addToPlaylist = async (playlistId, token, playlist, uris) => {
       //TODO: Inte lägga till dubbletter
-      let uris = ['spotify:track:4qjWcGhRQ28WEYuLDZ4aAR', 'spotify:track:4ezYPVfghVzIA1yVjQnZkk']
-      let urier = []
-      console.log("Playlist: " + playlist)
+      let urier = [];
+      //console.log("Playlist: " + playlist)
       playlist.forEach((song) => {
         urier.push(song.uri);
       });
-      console.log("Playlist urier: " + urier)
+      //console.log("Playlist urier: " + urier)
+      setUris(uris);
 
-      try {
-        const response = await fetch(
-          `https://api.spotify.com/v1/playlists/${playlistId}/tracks`,
-          {
-            method: "POST",
-            body: JSON.stringify({ 
-              uris: urier,
-            }),
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${token}`,
-            },
+      if (urier.length !== 0) {
+        try {
+          const response = await fetch(
+            `https://api.spotify.com/v1/playlists/${playlistId}/tracks`,
+            {
+              method: "POST",
+              body: JSON.stringify({
+                uris: urier,
+              }),
+              headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`,
+              },
+            }
+          );
+          if (response.ok) {
+            //return 0;
+            await ClearPlaylist();
           }
-        );
-        if (response.ok) {
-          return 0;
+          console.log("Couldn't add tracks to playlist.");
+        } catch (err) {
+          console.log(err);
         }
-        console.log("Couldn't add tracks to playlist.");
-      } catch (err) {
-        console.log(err);
       }
     };
     if (playlistId !== null) {
-      addToPlaylist(playlistId, token, playlist);
+      addToPlaylist(playlistId, token, playlist, uris);
     }
-  }, [click]);
+
+    const ClearPlaylist = async () => {
+      //TODO: setinterval
+      setUris([]);
+      setPlaylist([])
+    };
+  }, [click, token, playlistId]);
 
   const handleClick = () => {
     setClick(!click);
