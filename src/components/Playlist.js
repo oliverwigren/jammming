@@ -9,7 +9,7 @@ function Playlist(props) {
 
 
   return (
-    <div>
+    <div style={{minHeight:250}}>
       {playlist.map((song, i) => (
         <AddedSong
           name={song.name}
