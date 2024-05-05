@@ -107,7 +107,7 @@ function SaveToSpotifyContainer() {
     }
 
     const ClearPlaylist = async () => {
-      //TODO: setinterval
+      //TODO: setinterval, kör animation
       setUris([]);
       setPlaylist([])
     };

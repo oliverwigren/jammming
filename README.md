@@ -28,5 +28,5 @@ The purpose of this project was to use well-used React functions as useState, us
 
 ## Future work <a name="future"></a>
 - [ ] Responsive for different screen sizes
-- [ ] Ability to search for songs by artist
+- [x] Ability to search for songs by artist
 - [ ] Random song lyrics as placeholder in search bar

@@ -11,12 +11,13 @@ function AddedSong(props) {
 
   const handleOnClick = (e) => {
     //setButtonClick(true); //TODO: Fix slide out
-    removeSongFromPlaylist();
+    removeSongFromPlaylist(props.id);
+    //setInterval(()=> removeSongFromPlaylist(props.id), 2000)
   };
 
-  const removeSongFromPlaylist = () => {
+  const removeSongFromPlaylist = (removeId) => {
     setPlaylist((prev) => {
-      return prev.filter(({ id }) => props.id !== id);
+      return prev.filter(({ id }) => removeId !== id);
     });
   };
 
