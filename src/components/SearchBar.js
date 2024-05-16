@@ -6,9 +6,7 @@ function SearchBar() {
   const { search, setSearch, accessToken } = useContext(SearchContext);
   const [searchWord, setSearchWord] = useState("");
   const [generate, setGenerate] = useState(false);
-  const loaded = useRef(false);
 
-  //TODO: Inte köras på första iteration
   //TODO: Comments
 
   useEffect(() => {
@@ -19,8 +17,7 @@ function SearchBar() {
           `https://api.spotify.com/v1/search?q=${searchWord}&type=track&limit=10`,
           {
             headers: {
-              Authorization:
-                "Bearer " + token,
+              Authorization: "Bearer " + token,
             },
           }
         );
@@ -32,15 +29,15 @@ function SearchBar() {
         throw new Error(error);
       }
     };
-    if (loaded.current) {
+
+    if (accessToken !== null && searchWord.trim() !== "") {
       getData(searchWord, accessToken);
     }
-    loaded.current = true;
-  }, [generate]);
+  }, [generate, accessToken]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    
+
     setGenerate(!generate);
   };
 
