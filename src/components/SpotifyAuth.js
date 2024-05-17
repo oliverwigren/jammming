@@ -1,26 +1,32 @@
 import React, { useState, useEffect } from "react";
 
 const SpotifyAuth = (props) => {
+  const [generate, setGenerate] = useState(false);
+
   useEffect(() => {
+    // Generate token
+    generateAccessToken();
+
     // Check if the URL contains access token after redirection
     const urlParams = new URLSearchParams(window.location.hash.substr(1));
     const token = urlParams.get("access_token");
 
     if (token) {
-      // Save the access token to a variable or state
+      // Saves the access token to a variable or state
       props.setAccessToken(token);
+      reGenerate();
     }
-  }, []);
+  }, [generate]);
 
   const generateAccessToken = () => {
-    const clientId = "cb64326a23414ed7a9cfca9afb18f6d8"; // Replace with your Spotify Client ID
-    const redirectUri = "http://localhost:3000/callback"; // Replace with your redirect URI
+    const clientId = "cb64326a23414ed7a9cfca9afb18f6d8";
+    const redirectUri = "http://localhost:3000/callback";
     const scopes = [
       "user-read-private",
       "user-read-email",
       "playlist-modify-private",
       "playlist-modify-public",
-    ]; // Add the scopes you need
+    ];
 
     const queryParams = {
       client_id: clientId,
@@ -37,6 +43,12 @@ const SpotifyAuth = (props) => {
 
     // Redirect the user to Spotify authorization page
     window.location.href = authUrl;
+  };
+
+  const reGenerate = () => {
+    setInterval(() => {
+      setGenerate(!generate);
+    }, 3000);
   };
 
   return (
