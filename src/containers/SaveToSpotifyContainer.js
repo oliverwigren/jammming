@@ -4,7 +4,7 @@ import { SongsContext } from "../context/SongsContextArea";
 
 function SaveToSpotifyContainer() {
   const { PL, PN, AT } = useContext(SongsContext);
-  const [playlist, setPlaylist] = PL;
+  const [playlist] = PL;
   const [name] = PN;
   const [token] = AT;
 
@@ -12,7 +12,7 @@ function SaveToSpotifyContainer() {
   const [click, setClick] = useState(false);
   const [playlistId, setPlaylistId] = useState(null);
   const [uris, setUris] = useState([]);
-  const [usedUris, setUsedUris] = useState([])
+  const [usedUris, setUsedUris] = useState([]);
 
   useEffect(() => {
     // Get user id
@@ -39,7 +39,7 @@ function SaveToSpotifyContainer() {
     // Create Playlist
     const createPlaylist = async (id, token, name) => {
       try {
-        //TODO: id är null, första gången
+        //TODO: id är null, första gången ?
         const response = await fetch(
           `https://api.spotify.com/v1/users/${id}/playlists`,
           {
@@ -69,29 +69,34 @@ function SaveToSpotifyContainer() {
     }
 
     const extractUris = async (playlist) => {
-      let u = []
+      // Creates an array of uris from all playlist songs
+      let u = [];
       playlist.forEach((song) => {
         u.push(song.uri);
       });
-      return u
-    }
+      return u;
+    };
 
-    const addToPlaylist = async (playlistId, token, playlist, uris, usedUris) => {
+    const addToPlaylist = async (
+      playlistId,
+      token,
+      playlist,
+      uris, // Ta bort 
+      usedUris
+    ) => {
       //TODO: Inte lägga till dubbletter
-      let urier = [];
-      //console.log("Playlist: " + playlist)
-      // playlist.forEach((song) => {
-      //   urier.push(song.uri); //TODO: Ta bort urier
-      // });
-      urier = await extractUris(playlist)
-      //console.log("Playlist urier: " + urier) 
-      console.log("?" + uris)
-      console.log("Uris:" + urier)
-      console.log("Used: " + usedUris)
-      console.log("Left: " + urier.filter((uri) => !usedUris.includes(uri)))
-      const left = urier.filter((uri) => !usedUris.includes(uri))
-      console.log("Var " + left)
-      setUris(left);
+      let urier = []; // Ta bort
+      urier = await extractUris(playlist);
+      //console.log("Playlist urier: " + urier)
+      console.log("?" + uris);
+      console.log("Uris:" + urier);
+      console.log("Used: " + usedUris);
+      console.log("Left: " + urier.filter((uri) => !usedUris.includes(uri)));
+
+      let left = urier.filter((uri) => !usedUris.includes(uri)); // const ?
+
+      console.log("Var " + left);
+      //setUris(left); ?
 
       if (urier.length !== 0) {
         try {
@@ -109,7 +114,6 @@ function SaveToSpotifyContainer() {
             }
           );
           if (response.ok) {
-            //return 0;
             await ClearPlaylist(left);
           }
           console.log("Couldn't add tracks to playlist.");
@@ -124,21 +128,11 @@ function SaveToSpotifyContainer() {
 
     const ClearPlaylist = async (uris) => {
       setUsedUris((prev) => [uris, ...prev]);
-      
     };
-
-    
   }, [click, token, playlistId]);
 
   const handleClick = () => {
     setClick(!click);
-
-    //const playlist_id = await createPlaylist();
-    // {userId.map((v) => {
-    //   alert(v)
-    // })}
-    //alert(userId.keys);
-    //addToPlaylist(playlist_id);
   };
 
   return <SaveToSpotify onClick={handleClick} />;
