@@ -22,10 +22,10 @@ function App() {
       try {
         let searchResultSongs = search.tracks.items.map(
           ({ artists, name, album, uri, id }) => {
-            return {
-              artist: artists[0].name,
-              name: name,
-              album: album.name,
+            return { //TODO: Korta ner eller göra i css?
+              artist: artists[0].name.slice(0,10),
+              name: name.slice(0,15),
+              album: album.name.slice(0,10),
               uri: uri,
               id: id,
             };
