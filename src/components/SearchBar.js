@@ -3,14 +3,12 @@ import styles from "../styles/SearchBar.module.css";
 import { SearchContext } from "../context/SearchContextArea";
 
 function SearchBar() {
-  const { search, setSearch, accessToken } = useContext(SearchContext);
+  const { setSearch, accessToken } = useContext(SearchContext);
   const [searchWord, setSearchWord] = useState("");
   const [generate, setGenerate] = useState(false);
 
-  //TODO: Comments
-
   useEffect(() => {
-    // Gets tracks from Spotify with the search word inputted
+    // Gets tracks data from Spotify with the search query inputted
     const getData = async (searchWord, token) => {
       try {
         const response = await fetch(
@@ -24,9 +22,11 @@ function SearchBar() {
         if (response.ok) {
           const data = await response.json();
           setSearch(data);
+        } else {
+          console.log("Couldn't get search data");
         }
-      } catch (error) {
-        throw new Error(error);
+      } catch (err) {
+        console.log(err)
       }
     };
 
