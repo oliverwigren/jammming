@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 //TODO: Clean up och kommentera
-//TODO: 
+//TODO: Runs twice
 
 const SpotifyAuth = (props) => {
   const [generate, setGenerate] = useState(true);
@@ -22,11 +22,13 @@ const SpotifyAuth = (props) => {
       // Saves the access token to a variable or state
       props.setAccessToken(token);
       //reGenerate();
-      console.log("Token is" + token)
-      reGenerate()
+      console.log("Token is" + token);
+      const intervalId = reGenerate();
+      return () => clearInterval(intervalId)
+      //console.log(id)
     } else {
-      //generateAccessToken()
-      reGenerate()
+      generateAccessToken();
+      //reGenerate()
     }
   }, []);
 
@@ -58,15 +60,13 @@ const SpotifyAuth = (props) => {
   };
 
   const reGenerate = () => {
-    console.log("Regenerating")
-    setInterval(() => {
+    console.log("Regenerating");
+    return setInterval(() => {
       //setGenerate(!generate);
       //props.setAccessToken(null)
-      console.log("generated")
 
-      generateAccessToken()
-
-    }, 3600000);
+      generateAccessToken();
+    }, 60000); //TODO: Set correct time
   };
 
   return (
