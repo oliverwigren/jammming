@@ -17,11 +17,12 @@ The purpose of this project was to use well-used React functions as useState, us
 - HTML/CSS
 - REST API
 - Git
+- Implicit Grant Flow Authorization
 - OAuth 2.0
 
 ## Features <a name="features"></a>
-- Searching for songs by song title in the Spotify library
-- Adding songs to a playlist
+- Searching for songs in the Spotify library
+- Adding songs to the playlist
 - Removing songs from the playlist
 - Renaming playlist
 - Ability to add playlist to user's Spotify account
