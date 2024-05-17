@@ -1,11 +1,18 @@
 import React, { useState, useEffect } from "react";
 
+//TODO: Clean up och kommentera
+//TODO: 
+
 const SpotifyAuth = (props) => {
-  const [generate, setGenerate] = useState(false);
+  const [generate, setGenerate] = useState(true);
 
   useEffect(() => {
     // Generate token
-    generateAccessToken();
+    // if (generate === true) {
+    //   generateAccessToken();
+    //   setGenerate(false)
+    // }
+    // console.log(generate);
 
     // Check if the URL contains access token after redirection
     const urlParams = new URLSearchParams(window.location.hash.substr(1));
@@ -14,9 +21,14 @@ const SpotifyAuth = (props) => {
     if (token) {
       // Saves the access token to a variable or state
       props.setAccessToken(token);
-      reGenerate();
+      //reGenerate();
+      console.log("Token is" + token)
+      reGenerate()
+    } else {
+      //generateAccessToken()
+      reGenerate()
     }
-  }, [generate]);
+  }, []);
 
   const generateAccessToken = () => {
     const clientId = "cb64326a23414ed7a9cfca9afb18f6d8";
@@ -46,14 +58,20 @@ const SpotifyAuth = (props) => {
   };
 
   const reGenerate = () => {
+    console.log("Regenerating")
     setInterval(() => {
-      setGenerate(!generate);
-    }, 3000);
+      //setGenerate(!generate);
+      //props.setAccessToken(null)
+      console.log("generated")
+
+      generateAccessToken()
+
+    }, 3600000);
   };
 
   return (
     <div>
-      <button onClick={generateAccessToken}>Generate Access Token</button>
+      <button onClick={generateAccessToken}>Generate New Access Token</button>
     </div>
   );
 };
