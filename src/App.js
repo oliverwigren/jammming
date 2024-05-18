@@ -22,10 +22,10 @@ function App() {
       try {
         let searchResultSongs = search.tracks.items.map(
           ({ artists, name, album, uri, id }) => {
-            return { //TODO: Korta ner eller göra i css?
-              artist: artists[0].name,//.slice(0,10),
-              name: name,//.slice(0,15),
-              album: album.name,//.slice(0,10),
+            return {
+              artist: artists[0].name,
+              name: name,
+              album: album.name,
               uri: uri,
               id: id,
             };
@@ -38,6 +38,7 @@ function App() {
     }
   }, [search]);
 
+  //TODO: Remove AT-button or put it somewhere discrete
   return (
     <div className="App">
       <Header />
