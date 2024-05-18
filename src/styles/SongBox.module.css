@@ -1,19 +1,26 @@
 .div {
     background-color: black;
     color: white;
-    width: 47.5%;
+    width: 47%;
     min-width: 250px;
     height: 100px;
-    padding: 5px;
+    padding: 7.5px;
     margin-bottom: 10px;
     border-radius: 15px;
 }
 .b {
     font-size: 1.25rem;
+    overflow: hidden;
     white-space: nowrap;
+    text-overflow: ellipsis;
+    width: 90%;
+    display: block;
 }
 .desc {
     margin: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 .button {
     position: relative;
