@@ -10,9 +10,17 @@
 }
 .b {
     font-size: 1.25rem;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    width: 90%;
+    display: block;
 }
 .desc {
     margin: 0;
+    overflow: hidden;
+    white-space: wrap;
+    text-overflow: ellipsis;
 }
 .button {
     position: relative;
