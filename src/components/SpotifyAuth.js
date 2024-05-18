@@ -1,34 +1,19 @@
 import React, { useState, useEffect } from "react";
 
-//TODO: Clean up och kommentera
-//TODO: Runs twice
-
 const SpotifyAuth = (props) => {
-  const [generate, setGenerate] = useState(true);
-
   useEffect(() => {
-    // Generate token
-    // if (generate === true) {
-    //   generateAccessToken();
-    //   setGenerate(false)
-    // }
-    // console.log(generate);
-
     // Check if the URL contains access token after redirection
     const urlParams = new URLSearchParams(window.location.hash.substr(1));
     const token = urlParams.get("access_token");
 
     if (token) {
-      // Saves the access token to a variable or state
+      // Saves the access token
       props.setAccessToken(token);
-      //reGenerate();
-      console.log("Token is" + token);
+
       const intervalId = reGenerate();
-      return () => clearInterval(intervalId)
-      //console.log(id)
+      return () => clearInterval(intervalId);
     } else {
       generateAccessToken();
-      //reGenerate()
     }
   }, []);
 
@@ -60,13 +45,10 @@ const SpotifyAuth = (props) => {
   };
 
   const reGenerate = () => {
-    console.log("Regenerating");
+    // Generates a new access token before the previous has expired
     return setInterval(() => {
-      //setGenerate(!generate);
-      //props.setAccessToken(null)
-
       generateAccessToken();
-    }, 60000); //TODO: Set correct time
+    }, 3598000);
   };
 
   return (
