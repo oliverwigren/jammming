@@ -13,4 +13,13 @@
     height: inherit;
     border: 0;
     background-color: blue;
+    color: white;
+}
+.button:hover {
+    background-color: white;
+    color:blue;
+}
+.button:active {
+    background-color: blue;
+    color: white;
 }

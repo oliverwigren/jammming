@@ -7,4 +7,13 @@
     margin-top: 10px;
     border: 0;
     font-size: 1.2rem;
+    border: 1px solid white;
+}
+.button:hover {
+    color: white;
+    background-color: blue;
+}
+.button:active {
+    color: blue;
+    background-color: white;
 }
