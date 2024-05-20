@@ -94,7 +94,7 @@ function SaveToSpotifyContainer() {
       console.log("Left: " + urier.filter((uri) => !usedUris.includes(uri)));
 
       let left = urier.filter((uri) => !usedUris.includes(uri)); // const ?
-
+      setUsedUris(urier)
       console.log("Var " + left);
       //setUris(left); ?
 
@@ -114,7 +114,7 @@ function SaveToSpotifyContainer() {
             }
           );
           if (response.ok) {
-            await ClearPlaylist(left);
+            //await ClearPlaylist(left);
           }
           console.log("Couldn't add tracks to playlist.");
         } catch (err) {
