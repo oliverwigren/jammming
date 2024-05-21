@@ -2,8 +2,6 @@ import React, { useContext } from "react";
 import styles from "../styles/SongBox.module.css";
 import { SongsContext } from "../context/SongsContextArea";
 
-//TODO: Handle if music title, artist name or album name is too long
-
 function SongBox(props) {
   const { PL } = useContext(SongsContext);
   const [playlist, setPlaylist] = PL;

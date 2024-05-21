@@ -8,7 +8,7 @@ function SearchBar() {
   const [generate, setGenerate] = useState(false);
 
   useEffect(() => {
-    // Gets tracks data from Spotify with the search query inputted
+    // Gets track data from Spotify with the search query inputted
     const getData = async (searchWord, token) => {
       try {
         const response = await fetch(
@@ -26,7 +26,7 @@ function SearchBar() {
           console.log("Couldn't get search data");
         }
       } catch (err) {
-        console.log(err)
+        console.log(err);
       }
     };
 
