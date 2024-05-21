@@ -1,14 +1,3 @@
-/* .section {
-    width: 30%;
-    right: 5%;
-    float: right;
-    border: 1px solid black;
-    padding: 5px;
-    position: fixed;
-    margin-top: -50px;
-    background-color: blue;
-} */
-
 .section {
     width: 30%;
     right: 5%;
@@ -19,4 +8,11 @@
     position: absolute;
     background-color: blue;
     height: fit-content;
+}
+
+@media only screen and (max-width: 1000px) {
+    .section {
+        float: left;
+        position: static;
+    }
 }
