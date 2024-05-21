@@ -1,6 +1,5 @@
 import React, { useState, useContext } from "react";
 import styles from "../styles/AddedSong.module.css";
-//import { PlaylistSongContext } from "../context/PlaylistSongContextArea";
 import { SongsContext } from "../context/SongsContextArea";
 
 function AddedSong(props) {
