@@ -11,7 +11,7 @@ function AddedSong(props) {
   const handleOnClick = (e) => {
     //setButtonClick(true); //TODO: Fix slide out
     removeSongFromPlaylist(props.id);
-    //setInterval(()=> removeSongFromPlaylist(props.id), 2000)
+    //setTimeout(()=> removeSongFromPlaylist(props.id), 750)
   };
 
   const removeSongFromPlaylist = (removeId) => {

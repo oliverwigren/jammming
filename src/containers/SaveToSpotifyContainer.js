@@ -4,7 +4,7 @@ import { SongsContext } from "../context/SongsContextArea";
 
 function SaveToSpotifyContainer() {
   const { PL, PN, AT } = useContext(SongsContext);
-  const [playlist] = PL;
+  const [playlist, setPlaylist] = PL;
   const [name] = PN;
   const [token] = AT;
 
@@ -39,7 +39,6 @@ function SaveToSpotifyContainer() {
     // Create Playlist
     const createPlaylist = async (id, token, name) => {
       try {
-        //TODO: id är null, första gången ?
         const response = await fetch(
           `https://api.spotify.com/v1/users/${id}/playlists`,
           {
@@ -81,31 +80,28 @@ function SaveToSpotifyContainer() {
       playlistId,
       token,
       playlist,
-      uris, // Ta bort 
       usedUris
     ) => {
       //TODO: Inte lägga till dubbletter
-      let urier = []; // Ta bort
-      urier = await extractUris(playlist);
+      let uris = await extractUris(playlist);
       //console.log("Playlist urier: " + urier)
-      console.log("?" + uris);
-      console.log("Uris:" + urier);
+      /*console.log("Uris:" + uris);
       console.log("Used: " + usedUris);
-      console.log("Left: " + urier.filter((uri) => !usedUris.includes(uri)));
+      console.log("Left: " + uris.filter((uri) => !usedUris.includes(uri)));
 
-      let left = urier.filter((uri) => !usedUris.includes(uri)); // const ?
-      setUsedUris(urier)
+      let left = uris.filter((uri) => !usedUris.includes(uri)); // const ?
+      setUsedUris((prev) => [uris, ...prev])
       console.log("Var " + left);
-      //setUris(left); ?
+      setUris((prev) => [left, ...prev]);*/
 
-      if (urier.length !== 0) {
+      if (uris.length !== 0) {
         try {
           const response = await fetch(
             `https://api.spotify.com/v1/playlists/${playlistId}/tracks`,
             {
               method: "POST",
               body: JSON.stringify({
-                uris: left,
+                uris: uris,
               }),
               headers: {
                 "Content-Type": "application/json",
@@ -114,7 +110,8 @@ function SaveToSpotifyContainer() {
             }
           );
           if (response.ok) {
-            //await ClearPlaylist(left);
+            await ClearPlaylist();
+            return 0
           }
           console.log("Couldn't add tracks to playlist.");
         } catch (err) {
@@ -126,8 +123,14 @@ function SaveToSpotifyContainer() {
       addToPlaylist(playlistId, token, playlist, uris, usedUris);
     }
 
-    const ClearPlaylist = async (uris) => {
-      setUsedUris((prev) => [uris, ...prev]);
+    // const ClearPlaylist = async (uris) => {
+    //   setUsedUris((prev) => [uris, ...prev]);
+    // };
+    const ClearPlaylist = async () => {
+      setUris([])
+      setPlaylistId(null)
+      setUserId(null)
+      setPlaylist([])
     };
   }, [click, token, playlistId]);
 
