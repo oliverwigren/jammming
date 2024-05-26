@@ -9,10 +9,14 @@
     background-color: blue;
     height: fit-content;
 }
-
+/*
+* TODO: Fixa responsive
+*/
 @media only screen and (max-width: 1000px) {
     .section {
         float: left;
         position: static;
+        margin: 5%;
+        width: 90%;
     }
 }
