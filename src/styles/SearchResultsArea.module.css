@@ -14,9 +14,15 @@
 
 @media only screen and (max-width: 1000px) {
     .section {
-        float: left;
+        float: none;
         position: static;
-        margin: 5%;
+        margin: 5% auto;
         width: 90%;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .contain {
+        justify-content: center;
     }
 }

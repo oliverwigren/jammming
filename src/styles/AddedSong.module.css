@@ -10,7 +10,7 @@
 }
 .b {
     font-size: 1.25rem;
-    overflow: hidden;
+    /* overflow: hidden; */
     white-space: nowrap;
     text-overflow: ellipsis;
     width: 90%;

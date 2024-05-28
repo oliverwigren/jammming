@@ -9,14 +9,18 @@
     background-color: blue;
     height: fit-content;
 }
-/*
-* TODO: Fixa responsive
-*/
+.div {
+    min-height: 250px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+}
 @media only screen and (max-width: 1000px) {
     .section {
-        float: left;
+        float: none;
         position: static;
-        margin: 5%;
+        margin: 5% auto;
         width: 90%;
     }
 }

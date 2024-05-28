@@ -1,13 +1,14 @@
 import React, { useContext } from "react";
 import AddedSong from "./AddedSong";
 import { SongsContext } from "../context/SongsContextArea";
+import styles from '../styles/PlaylistArea.module.css'
 
 function Playlist() {
   const { PL } = useContext(SongsContext);
   const [playlist] = PL;
 
   return (
-    <div style={{ minHeight: 250 }}>
+    <div className={styles.div}>
       {playlist.map((song, i) => (
         <AddedSong
           name={song.name}
