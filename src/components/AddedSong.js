@@ -3,15 +3,12 @@ import styles from "../styles/AddedSong.module.css";
 import { SongsContext } from "../context/SongsContextArea";
 
 function AddedSong(props) {
-  const [isButtonClick, setButtonClick] = useState(false);
 
   const { PL } = useContext(SongsContext);
   const [, setPlaylist] = PL;
 
   const handleOnClick = (e) => {
-    //setButtonClick(true); //TODO: Fix slide out
     removeSongFromPlaylist(props.id);
-    //setTimeout(()=> removeSongFromPlaylist(props.id), 750)
   };
 
   const removeSongFromPlaylist = (removeId) => {
@@ -21,7 +18,7 @@ function AddedSong(props) {
   };
 
   return (
-    <div className={isButtonClick ? styles.RemoveDiv : styles.div}>
+    <div className={styles.div}>
       <button className={styles.button} onClick={handleOnClick}>
         -
       </button>
