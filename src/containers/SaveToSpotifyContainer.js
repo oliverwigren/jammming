@@ -112,6 +112,7 @@ function SaveToSpotifyContainer() {
     }
 
     const ClearPlaylist = async () => {
+      //TODO: Indicate that playlist was added correctly
       setUris([])
       setPlaylistId(null)
       setUserId(null)

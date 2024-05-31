@@ -3,20 +3,13 @@ import SongBox from "./SongBox";
 import { SongsContext } from "../context/SongsContextArea";
 
 function SearchResults() {
-  // const addToPlaylist = ({target}) => {
-  //   setPlaylist((prev) => [prev..., target.value])
-  // }
 
   const { SR, SVT } = useContext(SongsContext);
+  //TODO: Correct variables
   //const token = useContext(SongsContext);
   const [searchResults] = SR;
   const [startValueSearchResults] = SVT
 
-  // const handleOnClick = ({ artist, name, album }) => {
-  //   setPlaylist((prev) => {
-  //     return [{ album: album, name: name, artist: artist }, ...prev];
-  //   });
-  // };
 
   return (
     <>

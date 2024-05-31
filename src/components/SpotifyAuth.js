@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+//TODO: Handle Error, user disagrees
 
 const SpotifyAuth = (props) => {
   useEffect(() => {

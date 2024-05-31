@@ -38,7 +38,6 @@ function App() {
     }
   }, [search]);
 
-  //TODO: Remove AT-button or put it somewhere discrete, längst ner?
   return (
     <div className="App">
       <Header />
