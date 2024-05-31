@@ -12,7 +12,6 @@ function SaveToSpotifyContainer() {
   const [click, setClick] = useState(false);
   const [playlistId, setPlaylistId] = useState(null);
   const [uris, setUris] = useState([]);
-  const [usedUris, setUsedUris] = useState([]);
 
   useEffect(() => {
     // Get user id
@@ -80,20 +79,9 @@ function SaveToSpotifyContainer() {
       playlistId,
       token,
       playlist,
-      usedUris
     ) => {
-      //TODO: Inte lägga till dubbletter
+      // Adds songs to the created playlist
       let uris = await extractUris(playlist);
-      //console.log("Playlist urier: " + urier)
-      /*console.log("Uris:" + uris);
-      console.log("Used: " + usedUris);
-      console.log("Left: " + uris.filter((uri) => !usedUris.includes(uri)));
-
-      let left = uris.filter((uri) => !usedUris.includes(uri)); // const ?
-      setUsedUris((prev) => [uris, ...prev])
-      console.log("Var " + left);
-      setUris((prev) => [left, ...prev]);*/
-
       if (uris.length !== 0) {
         try {
           const response = await fetch(
@@ -120,12 +108,9 @@ function SaveToSpotifyContainer() {
       }
     };
     if (playlistId !== null) {
-      addToPlaylist(playlistId, token, playlist, uris, usedUris);
+      addToPlaylist(playlistId, token, playlist, uris);
     }
 
-    // const ClearPlaylist = async (uris) => {
-    //   setUsedUris((prev) => [uris, ...prev]);
-    // };
     const ClearPlaylist = async () => {
       setUris([])
       setPlaylistId(null)
