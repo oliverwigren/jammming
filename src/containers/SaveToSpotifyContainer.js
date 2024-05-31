@@ -25,9 +25,11 @@ function SaveToSpotifyContainer() {
           await setUserId(data.id);
         } else {
           console.log("Couldn't find user.");
+          configInfoText("Couldn't create playlist.", true)
         }
       } catch (err) {
         console.log(err);
+        configInfoText("Couldn't create playlist.", true)
       }
     };
 
@@ -56,10 +58,13 @@ function SaveToSpotifyContainer() {
         if (response.ok) {
           const data = await response.json();
           await setPlaylistId(data.id);
+        } else {
+          console.log("Couldn't create playlist.");
+          configInfoText("Couldn't create playlist.", true)
         }
-        console.log("Couldn't create playlist.");
       } catch (err) {
         console.log(err);
+        configInfoText("Couldn't create playlist.", true)
       }
     };
     if (playlistId === null && userId !== null) {
@@ -75,11 +80,7 @@ function SaveToSpotifyContainer() {
       return u;
     };
 
-    const addToPlaylist = async (
-      playlistId,
-      token,
-      playlist,
-    ) => {
+    const addToPlaylist = async (playlistId, token, playlist) => {
       // Adds songs to the created playlist
       let uris = await extractUris(playlist);
       if (uris.length !== 0) {
@@ -99,11 +100,13 @@ function SaveToSpotifyContainer() {
           );
           if (response.ok) {
             await ClearPlaylist();
-            return 0
+            return 0;
           }
           console.log("Couldn't add tracks to playlist.");
+          configInfoText("Couldn't add tracks to playlist.", true)
         } catch (err) {
           console.log(err);
+          configInfoText("Couldn't add tracks to playlist.", true)
         }
       }
     };
@@ -111,12 +114,28 @@ function SaveToSpotifyContainer() {
       addToPlaylist(playlistId, token, playlist, uris);
     }
 
+    const configInfoText = async (text, isError) => {
+      const infoText = document.getElementById('infoText');
+
+      if (isError) {
+        infoText.style.color = 'red'
+      } else {
+        infoText.style.color = 'white'
+      }
+
+      infoText.innerHTML = text;
+
+      setTimeout(() => {
+        infoText.innerHTML = '';
+      }, 3500)
+    }
+
     const ClearPlaylist = async () => {
-      //TODO: Indicate that playlist was added correctly
-      setUris([])
-      setPlaylistId(null)
-      setUserId(null)
-      setPlaylist([])
+      setUris([]);
+      setPlaylistId(null);
+      setUserId(null);
+      setPlaylist([]);
+      configInfoText('The playlist was succesfully created!', false)
     };
   }, [click, token, playlistId]);
 
@@ -124,7 +143,12 @@ function SaveToSpotifyContainer() {
     setClick(!click);
   };
 
-  return <SaveToSpotify onClick={handleClick} />;
+  return (
+    <>
+      <SaveToSpotify onClick={handleClick} />
+      <p id="infoText"></p>
+    </>
+  );
 }
 
 export default SaveToSpotifyContainer;
