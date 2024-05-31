@@ -3,17 +3,12 @@ import SongBox from "./SongBox";
 import { SongsContext } from "../context/SongsContextArea";
 
 function SearchResults() {
-
-  const { SR, SVT } = useContext(SongsContext);
-  //TODO: Correct variables
-  //const token = useContext(SongsContext);
-  const [searchResults] = SR;
-  const [startValueSearchResults] = SVT
-
+  const { SR } = useContext(SongsContext);
+  const [searchResults, setSearchResults] = SR;
 
   return (
     <>
-      {startValueSearchResults.map((song, i) => (
+      {searchResults.map((song, i) => (
         <SongBox
           artist={song.artist}
           name={song.name}
@@ -21,7 +16,6 @@ function SearchResults() {
           key={"searchSong_" + i}
           id={song.id}
           uri={song.uri}
-          // [song.artist, song.name, song.album]}
         />
       ))}
     </>
