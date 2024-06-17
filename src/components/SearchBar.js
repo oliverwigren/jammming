@@ -54,6 +54,7 @@ function SearchBar() {
           name="search"
           required
           placeholder="Search for a song"
+          autoComplete="off"
           onChange={handleChange}
         />
         <button className={styles.button} type="submit">
