@@ -54,7 +54,7 @@ const SpotifyAuth = (props) => {
 
   return (
     <div>
-      {/*<button onClick={generateAccessToken}>Generate New Access Token</button>*/}
+      {props.token ? <></> : <button onClick={generateAccessToken}>Generate New Access Token</button>}
     </div>
   );
 };

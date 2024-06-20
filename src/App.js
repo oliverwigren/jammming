@@ -46,7 +46,7 @@ function App() {
         <SearchBarArea />
       </SearchContextArea>
 
-      <SpotifyAuth setAccessToken={setAccessToken} />
+      <SpotifyAuth setAccessToken={setAccessToken} token={accessToken} />
 
       <SongsContextArea
         startValuePlaylist={playlistSongs}
