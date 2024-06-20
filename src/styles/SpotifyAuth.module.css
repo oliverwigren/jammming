@@ -1,0 +1,16 @@
+.div {
+    margin: 20px auto;
+    width: 35%;
+    max-width: 290px;
+}
+.p {
+    color: red;
+    font-size: 0.85rem;
+}
+.button {
+    color: white;
+    background-color: blue;
+    padding: 12.5px;
+    border-radius: 20px;
+    border: 0;
+}

@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import styles from '../styles/SpotifyAuth.module.css'
 //TODO: Handle Error, user disagrees
 
 const SpotifyAuth = (props) => {
@@ -53,8 +54,12 @@ const SpotifyAuth = (props) => {
   };
 
   return (
-    <div>
-      {props.token ? <></> : <button onClick={generateAccessToken}>Generate New Access Token</button>}
+    <div className={styles.div}>
+      {!props.token ? <></> : 
+      <>
+      <p className={styles.p} >There was an error when trying to acquire the access token, please try again</p>
+      <button className={styles.button} onClick={generateAccessToken}>Generate New Access Token</button>
+      </>}
     </div>
   );
 };
