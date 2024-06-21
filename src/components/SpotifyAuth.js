@@ -55,7 +55,7 @@ const SpotifyAuth = (props) => {
 
   return (
     <div className={styles.div}>
-      {!props.token ? <></> : 
+      {props.token ? <></> : 
       <>
       <p className={styles.p} >There was an error when trying to acquire the access token, please try again</p>
       <button className={styles.button} onClick={generateAccessToken}>Generate New Access Token</button>
