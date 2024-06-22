@@ -23,6 +23,7 @@ function SaveToSpotifyContainer() {
         if (response.ok) {
           const data = await response.json();
           await setUserId(data.id);
+          return data.id
         } else {
           console.log("Couldn't find user.");
           configInfoText("Couldn't create playlist.", true)
@@ -151,4 +152,5 @@ function SaveToSpotifyContainer() {
   );
 }
 
-export default SaveToSpotifyContainer;
+//export default {SaveToSpotifyContainer, getUserId} ;
+export default SaveToSpotifyContainer
