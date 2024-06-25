@@ -5,16 +5,25 @@ import styles from '../styles/SpotifyAuth.module.css'
 const SpotifyAuth = (props) => {
   useEffect(() => {
     // Check if the URL contains access token after redirection
-    const urlParams = new URLSearchParams(window.location.hash.substr(1));
-    const token = urlParams.get("access_token");
-
+    const accesstokenURLParams = new URLSearchParams(window.location.hash.substr(1));
+    const searchURLParams = new URLSearchParams(window.location.search)
+    const token = accesstokenURLParams.get("access_token");
+    const error = searchURLParams.get('error')
+    //alert(error)
+    // Checks if there is an token in the URL
     if (token) {
       // Saves the access token
       props.setAccessToken(token);
-
+      // Starts the countdown to when a new access token will be needed
       const intervalId = reGenerate();
       return () => clearInterval(intervalId);
-    } else {
+    } 
+    // Checks if there is an error, i.e. there is no access token in the URL.
+    else if(error) {
+      // Something?
+    }
+    // Otherwise, generate a token
+    else {
       generateAccessToken();
     }
   }, []);
