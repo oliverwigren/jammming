@@ -1,7 +1,10 @@
 import SaveToSpotifyContainer from '../containers/SaveToSpotifyContainer.js'
+import { render, screen, waitFor } from '@testing-library/react';
+import '@testing-library/jest-dom'
+import userEvent from '@testing-library/user-event';
 
 it("Gets user id", async () => {
-  //moch
+  //mock
 
   //Arrange
   //Act
@@ -9,3 +12,7 @@ it("Gets user id", async () => {
   const expectedResult = await getUserId(token);
   //Assert
 });
+
+it('Song-boxes disappear on submit', () => {
+
+})
