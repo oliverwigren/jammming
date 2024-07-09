@@ -2,36 +2,37 @@ import React, { useContext, useEffect, useState, useRef } from "react";
 import styles from "../styles/SearchBar.module.css";
 import { SearchContext } from "../context/SearchContextArea";
 
+// Gets track data from Spotify with the search query inputted
+export const getData = async (searchWord, token) => {
+  try {
+    const response = await fetch(
+      `https://api.spotify.com/v1/search?q=${searchWord}&type=track&limit=10`,
+      {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      }
+    );
+    if (response.ok) {
+      const data = await response.json();
+      //setSearch(data);
+      return data
+    } else {
+      console.log("Couldn't get search data");
+    }
+  } catch (err) {
+    console.log(err);
+  }
+};
+
 function SearchBar() {
   const { setSearch, accessToken } = useContext(SearchContext);
   const [searchWord, setSearchWord] = useState("");
   const [generate, setGenerate] = useState(false);
 
   useEffect(() => {
-    // Gets track data from Spotify with the search query inputted
-    const getData = async (searchWord, token) => {
-      try {
-        const response = await fetch(
-          `https://api.spotify.com/v1/search?q=${searchWord}&type=track&limit=10`,
-          {
-            headers: {
-              Authorization: "Bearer " + token,
-            },
-          }
-        );
-        if (response.ok) {
-          const data = await response.json();
-          setSearch(data);
-        } else {
-          console.log("Couldn't get search data");
-        }
-      } catch (err) {
-        console.log(err);
-      }
-    };
-
     if (accessToken !== null && searchWord.trim() !== "") {
-      getData(searchWord, accessToken);
+      getData(searchWord, accessToken).then(setSearch);
     }
   }, [generate, accessToken]);
 
