@@ -10,7 +10,7 @@ it('Searches successfully', () => {
     // Assert
 })
 
-it('Search will fail because there is no search word', () => {
+it('', () => {
     // mock
     // Arrange
     render(<SearchBar />)

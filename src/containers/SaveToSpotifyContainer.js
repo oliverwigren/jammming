@@ -2,6 +2,25 @@ import React, { useContext, useEffect, useState } from "react";
 import SaveToSpotify from "../components/SaveToSpotify";
 import { SongsContext } from "../context/SongsContextArea";
 
+export const getUserId = async (token) => {
+  try {
+    const response = await fetch(`https://api.spotify.com/v1/me`, {
+      headers: { Authorization: "Bearer " + token },
+    });
+    if (response.ok) {
+      const data = await response.json();
+      //await setUserId(data.id);
+      return data.id
+    } else {
+      console.log("Couldn't find user.");
+      //configInfoText("Couldn't create playlist.", true)
+    }
+  } catch (err) {
+    console.log(err);
+    //configInfoText("Couldn't create playlist.", true)
+  }
+};
+
 function SaveToSpotifyContainer() {
   const { PL, PN, AT } = useContext(SongsContext);
   const [playlist, setPlaylist] = PL;
@@ -15,27 +34,8 @@ function SaveToSpotifyContainer() {
 
   useEffect(() => {
     // Get user id
-    const getUserId = async (token) => {
-      try {
-        const response = await fetch(`https://api.spotify.com/v1/me`, {
-          headers: { Authorization: "Bearer " + token },
-        });
-        if (response.ok) {
-          const data = await response.json();
-          await setUserId(data.id);
-          return data.id
-        } else {
-          console.log("Couldn't find user.");
-          configInfoText("Couldn't create playlist.", true)
-        }
-      } catch (err) {
-        console.log(err);
-        configInfoText("Couldn't create playlist.", true)
-      }
-    };
-
     if (userId === null && token !== null) {
-      getUserId(token);
+      getUserId(token).then(setUserId)
     }
 
     // Create Playlist
