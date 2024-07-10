@@ -1,9 +1,10 @@
 import SaveToSpotifyContainer from '../containers/SaveToSpotifyContainer.js';
 import SpotifyAuth from '../components/SpotifyAuth.js'
-import { getUserId } from '../containers/SaveToSpotifyContainer.js';
+import { getUserId, createPlaylist, addToPlaylist, configInfoText } from '../containers/SaveToSpotifyContainer.js';
 import { render, screen, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom'
 import userEvent from '@testing-library/user-event';
+import { getMockAT, getMockID, getMockPlaylistID } from '../__mocks__/getMockData.js';
 
 it("Gets user id", async () => {
   //mock
@@ -12,7 +13,7 @@ it("Gets user id", async () => {
   //const button = screen.getByRole('button', {name: /savetospotify/i})
   const expectedResult = 'bjf5xcwcmc5wz5soxpr6f71um'
   // Access token
-  const token = 'BQAk5W8ftrpN0ujvBoCXfb1I1nDQECCg8psZ3l3cL7JsQ6UzBjijhKViPcW6WP6AMs0vCF6qni4Rflxu1wjo9Ph0yX77lRumSzQ0cKCaiOmxF54NPbmJg0zZJfIN9OaKjwGsmTpSgKsc8oT-8o92V9aobONUNK204b3d7_kwuS-fg5BIZiO474SHZbPEqglcPb0_oal8TZLFFxdA56aL1jFB_QFtDnXbo1CPCRHcrN0hxN3eUBqM-yxvHtCwmigEe00zBMLj84ACwQ'
+  const token = getMockAT()
   //Act
   // render(<SpotifyAuth/>)
   // render(<SaveToSpotifyContainer></SaveToSpotifyContainer>)
@@ -24,6 +25,37 @@ it("Gets user id", async () => {
   expect(actualResult).toBe(expectedResult)
 });
 
-it('Song-boxes disappear on submit', async () => {
+it('Creates playlist', async () => {
+  // Arrange
+  const expectedResult = getMockPlaylistID()
+  const id = getMockID
+  const token = getMockAT
+  const name = 'Playlist'
+  // Act
+  const actualResult = await createPlaylist(id, token, name)
+  // Assert
+  expect(actualResult).toBeDefined()
+  expect(actualResult).toBe(expectedResult)
+  expect(actualResult).not.toEqual(1)
 
 })
+
+// it('Shows red error text', () => {
+//   // Arrange
+//   const text = 'Error, something went wrong'
+//   const color = 'red'
+//   // Act
+//   configInfoText(text, true)
+//   const textElement = screen.getByText(text)
+//   // Assert
+//   expect(textElement).toBeInTheDocument()
+//   expect(textElement.innerHTML).toBe(text)
+//   expect(textElement.style.color).toBe(color)
+// })
+// it('shows white success text', () => {
+
+// })
+
+// it('Song-boxes disappear on submit', async () => {
+
+// })

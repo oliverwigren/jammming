@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import SaveToSpotify from "../components/SaveToSpotify";
 import { SongsContext } from "../context/SongsContextArea";
 
+// Get User id
 export const getUserId = async (token) => {
   try {
     const response = await fetch(`https://api.spotify.com/v1/me`, {
@@ -21,6 +22,98 @@ export const getUserId = async (token) => {
   }
 };
 
+// Create Playlist
+export const createPlaylist = async (id, token, name) => {
+  try {
+    const response = await fetch(
+      `https://api.spotify.com/v1/users/${id}/playlists`,
+      {
+        method: "POST",
+        body: JSON.stringify({
+          name: name,
+          description: "This playlist was made with Jammming!",
+          public: false,
+        }),
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    if (response.ok) {
+      const data = await response.json();
+      //await setPlaylistId(data.id);
+      return data.id
+    } else {
+      console.log("Couldn't create playlist.");
+      //configInfoText("Couldn't create playlist.", true)
+      return 1
+    }
+  } catch (err) {
+    console.log(err);
+    //configInfoText("Couldn't create playlist.", true)
+    return 1
+  }
+};
+
+// Extract only uris from array of songs
+export const extractUris = async (playlist) => {
+  // Creates an array of uris from all playlist songs
+  let u = [];
+  playlist.forEach((song) => {
+    u.push(song.uri);
+  });
+  u.reverse()
+  return u;
+};
+
+// Adds songs to the created playlist
+export const addToPlaylist = async (playlistId, token, playlist) => {
+  let uris = await extractUris(playlist);
+  if (uris.length !== 0) {
+    try {
+      const response = await fetch(
+        `https://api.spotify.com/v1/playlists/${playlistId}/tracks`,
+        {
+          method: "POST",
+          body: JSON.stringify({
+            uris: uris,
+          }),
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      if (response.ok) {
+        //await ClearPlaylist();
+        return 0;
+      }
+      console.log("Couldn't add tracks to playlist.");
+      //configInfoText("Couldn't add tracks to playlist.", true)
+    } catch (err) {
+      console.log(err);
+      //configInfoText("Couldn't add tracks to playlist.", true)
+    }
+  }
+};
+
+// export const configInfoText = async (text, isError) => {
+//   const infoText = document.getElementById('infoText');
+
+//   if (isError) {
+//     infoText.style.color = 'red'
+//   } else {
+//     infoText.style.color = 'white'
+//   }
+
+//   infoText.innerHTML = text;
+
+//   setTimeout(() => {
+//     infoText.innerHTML = '';
+//   }, 3500)
+// }
+
 function SaveToSpotifyContainer() {
   const { PL, PN, AT } = useContext(SongsContext);
   const [playlist, setPlaylist] = PL;
@@ -32,113 +125,31 @@ function SaveToSpotifyContainer() {
   const [playlistId, setPlaylistId] = useState(null);
   const [uris, setUris] = useState([]);
 
+  const ClearPlaylist = () => {
+  setUris([]);
+  setPlaylistId(null);
+  setUserId(null);
+  setPlaylist([]);
+  configInfoText('The playlist was succesfully created!', false)
+};
+
   useEffect(() => {
-    // Get user id
+    // #1 Get user id
     if (userId === null && token !== null) {
       getUserId(token).then(setUserId)
+      // return
     }
-
-    // Create Playlist
-    const createPlaylist = async (id, token, name) => {
-      try {
-        const response = await fetch(
-          `https://api.spotify.com/v1/users/${id}/playlists`,
-          {
-            method: "POST",
-            body: JSON.stringify({
-              name: name,
-              description: "This playlist was made with Jammming!",
-              public: false,
-            }),
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
-        if (response.ok) {
-          const data = await response.json();
-          await setPlaylistId(data.id);
-        } else {
-          console.log("Couldn't create playlist.");
-          configInfoText("Couldn't create playlist.", true)
-        }
-      } catch (err) {
-        console.log(err);
-        configInfoText("Couldn't create playlist.", true)
-      }
-    };
+    // #2 Creates playlist
     if (playlistId === null && userId !== null) {
-      createPlaylist(userId, token, name);
+      createPlaylist(userId, token, name).then(setPlaylistId)
+      // return
     }
-
-    const extractUris = async (playlist) => {
-      // Creates an array of uris from all playlist songs
-      let u = [];
-      playlist.forEach((song) => {
-        u.push(song.uri);
-      });
-      u.reverse()
-      return u;
-    };
-
-    const addToPlaylist = async (playlistId, token, playlist) => {
-      // Adds songs to the created playlist
-      let uris = await extractUris(playlist);
-      if (uris.length !== 0) {
-        try {
-          const response = await fetch(
-            `https://api.spotify.com/v1/playlists/${playlistId}/tracks`,
-            {
-              method: "POST",
-              body: JSON.stringify({
-                uris: uris,
-              }),
-              headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${token}`,
-              },
-            }
-          );
-          if (response.ok) {
-            await ClearPlaylist();
-            return 0;
-          }
-          console.log("Couldn't add tracks to playlist.");
-          configInfoText("Couldn't add tracks to playlist.", true)
-        } catch (err) {
-          console.log(err);
-          configInfoText("Couldn't add tracks to playlist.", true)
-        }
-      }
-    };
+    // #3 Adds songs to the playlist
     if (playlistId !== null) {
       addToPlaylist(playlistId, token, playlist, uris);
+      ClearPlaylist()
+      // return
     }
-
-    const configInfoText = async (text, isError) => {
-      const infoText = document.getElementById('infoText');
-
-      if (isError) {
-        infoText.style.color = 'red'
-      } else {
-        infoText.style.color = 'white'
-      }
-
-      infoText.innerHTML = text;
-
-      setTimeout(() => {
-        infoText.innerHTML = '';
-      }, 3500)
-    }
-
-    const ClearPlaylist = async () => {
-      setUris([]);
-      setPlaylistId(null);
-      setUserId(null);
-      setPlaylist([]);
-      configInfoText('The playlist was succesfully created!', false)
-    };
   }, [click, token, playlistId]);
 
   const handleClick = () => {
