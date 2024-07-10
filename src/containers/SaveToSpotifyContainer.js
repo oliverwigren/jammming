@@ -78,6 +78,7 @@ function SaveToSpotifyContainer() {
       playlist.forEach((song) => {
         u.push(song.uri);
       });
+      u.reverse()
       return u;
     };
 
