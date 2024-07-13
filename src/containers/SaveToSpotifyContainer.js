@@ -52,18 +52,20 @@ export const createPlaylist = async (id, token, name) => {
   } catch (err) {
     console.log(err);
     //configInfoText("Couldn't create playlist.", true)
-    return 1
+    return 2
   }
 };
 
 // Extract only uris from array of songs
 export const extractUris = async (playlist) => {
   // Creates an array of uris from all playlist songs
+  console.log(playlist)
   let u = [];
   playlist.forEach((song) => {
     u.push(song.uri);
   });
   u.reverse()
+  console.log(u)
   return u;
 };
 
@@ -98,21 +100,21 @@ export const addToPlaylist = async (playlistId, token, playlist) => {
   }
 };
 
-// export const configInfoText = async (text, isError) => {
-//   const infoText = document.getElementById('infoText');
+export const configInfoText = async (text, isError) => {
+  const infoText = document.getElementById('infoText');
 
-//   if (isError) {
-//     infoText.style.color = 'red'
-//   } else {
-//     infoText.style.color = 'white'
-//   }
+  if (isError) {
+    infoText.style.color = 'red'
+  } else {
+    infoText.style.color = 'white'
+  }
 
-//   infoText.innerHTML = text;
+  infoText.innerHTML = text;
 
-//   setTimeout(() => {
-//     infoText.innerHTML = '';
-//   }, 3500)
-// }
+  setTimeout(() => {
+    infoText.innerHTML = '';
+  }, 3500)
+}
 
 function SaveToSpotifyContainer() {
   const { PL, PN, AT } = useContext(SongsContext);
