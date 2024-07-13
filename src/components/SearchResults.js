@@ -4,7 +4,7 @@ import { SongsContext } from "../context/SongsContextArea";
 
 function SearchResults() {
   const { SR } = useContext(SongsContext);
-  const [searchResults, setSearchResults] = SR;
+  const [searchResults] = SR;
 
   return (
     <>

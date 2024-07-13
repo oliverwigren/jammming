@@ -27,7 +27,7 @@ function SongBox(props) {
   };
 
   return (
-    <div className={styles.div}>
+    <div className={styles.div} role="Track">
       <b className={styles.b}>{props.name}</b>
       <p className={styles.desc}>
         <span>{props.artist}</span> - <span>{props.album}</span>
