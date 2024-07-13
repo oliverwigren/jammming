@@ -16,6 +16,7 @@ The purpose of this project was to use well-used React functions as useState, us
 - Spotify API
 - HTML/CSS
 - REST API
+- Jest & React Testing Library
 - Git
 - Implicit Grant Flow Authorization
 - OAuth 2.0
