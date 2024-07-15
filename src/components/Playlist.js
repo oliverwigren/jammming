@@ -8,7 +8,7 @@ function Playlist() {
   const [playlist] = PL;
 
   return (
-    <div className={styles.div}>
+    <div className={styles.div} role="playlistContainer">
       {playlist.map((song, i) => (
         <AddedSong
           name={song.name}

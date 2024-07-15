@@ -32,7 +32,7 @@ function SongBox(props) {
       <p className={styles.desc}>
         <span>{props.artist}</span> - <span>{props.album}</span>
       </p>
-      <button onClick={handleOnClick} className={styles.button}>
+      <button onClick={handleOnClick} className={styles.button} disabled={isSongInPlaylist}>
         {isSongInPlaylist ? 'A' : '+'}
       </button>
     </div>

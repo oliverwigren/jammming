@@ -2,9 +2,12 @@ import { render, screen } from "@testing-library/react";
 import SearchResults from "../components/SearchResults";
 import { SongsContextArea } from "../context/SongsContextArea";
 import SearchResultsArea from "../components/SearchResultsArea";
+import PlaylistArea from '../components/PlaylistArea'
+import userEvent from "@testing-library/user-event";
+import { act } from "react-dom/test-utils";
+import Playlist from "../components/Playlist";
 
-it('Renders SongBoxes correctly', () => {
-    // Arrange
+it('Renders SongBoxes in Playlist area after being added', async () => {
     const searchResults = [
         {
           "artist": "Adele",
@@ -77,21 +80,23 @@ it('Renders SongBoxes correctly', () => {
           "id": "63kd4m3VFxcJjPVVtbVNAu"
         }
       ]
-    // Act
-    render(<SongsContextArea startValuePlaylist={[]} startValueSearchResults={searchResults} > <SearchResultsArea> <SearchResults /> </SearchResultsArea> </SongsContextArea>)
-    const container = screen.getByRole('searchResultsContainer')
-    const boxes = screen.getAllByRole('Track')
-    // Assert
-    expect(container).not.toBeEmptyDOMElement()
-    expect(boxes.length).toBe(10)
-    expect(boxes[2]).toBeInTheDocument()
-    expect(boxes[5]).toBeInTheDocument()
-    expect(boxes[11]).toBeUndefined()
-})
+    const songText = 'Adele'
 
-it("Don't render any SongBoxes", () => {
-    render(<SongsContextArea startValuePlaylist={[]} startValueSearchResults={[]} > <SearchResultsArea> <SearchResults /> </SearchResultsArea> </SongsContextArea>)
-    const container = screen.getByRole('searchResultsContainer')
+    render(<SongsContextArea startValuePlaylist={[]} startValueSearchResults={searchResults} > <PlaylistArea><Playlist></Playlist></PlaylistArea> <SearchResultsArea> <SearchResults /> </SearchResultsArea> </SongsContextArea>)
+    
+    const container = screen.getByRole('playlistContainer')
+    const song =  screen.getByText(songText).parentElement.parentElement;
+    const button = song.querySelector('button')
 
     expect(container).toBeEmptyDOMElement()
+
+    act(() => {
+        userEvent.click(button)
+    })
+    
+    const addedSongBox = await screen.findByRole('AddedTrack')
+
+    expect(container).not.toBeEmptyDOMElement()
+    expect(addedSongBox).toBeInTheDocument()
+    expect(button).toBeDisabled()
 })

@@ -6,7 +6,7 @@ function SearchResultsArea() {
   return (
     <section className={styles.section}>
       <h3>Search Results</h3>
-      <div className={styles.contain} role="container">
+      <div className={styles.contain} role="searchResultsContainer">
         <SearchResults />
       </div>
     </section>

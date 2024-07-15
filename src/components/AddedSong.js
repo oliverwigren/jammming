@@ -18,7 +18,7 @@ function AddedSong(props) {
   };
 
   return (
-    <div className={styles.div}>
+    <div className={styles.div} role="AddedTrack">
       <button className={styles.button} onClick={handleOnClick}>
         -
       </button>

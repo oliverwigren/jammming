@@ -4,7 +4,7 @@ import Playlist from "./Playlist";
 import PlaylistName from "./PlaylistName";
 import SaveToSpotifyContainer from "../containers/SaveToSpotifyContainer";
 
-function PlaylistArea(props) {
+function PlaylistArea() {
   return (
     <section className={styles.section}>
       <PlaylistName />
