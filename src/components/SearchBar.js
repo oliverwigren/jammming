@@ -16,12 +16,15 @@ export const getData = async (searchWord, token) => {
     if (response.ok) {
       const data = await response.json();
       //setSearch(data);
+      console.log(data)
       return data
     } else {
       console.log("Couldn't get search data");
+      return 1
     }
   } catch (err) {
     console.log(err);
+    return 2
   }
 };
 

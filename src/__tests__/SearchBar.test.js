@@ -1,29 +1,28 @@
-//import SaveToSpotifyContainer from '../containers/SaveToSpotifyContainer.js'
 import { getData } from '../components/SearchBar.js';
-import { render, screen, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom'
-import userEvent from '@testing-library/user-event';
+import { getMockAT, getMockTracksFromSearch } from '../__mocks__/getMockData.js'
 
 it('Searches successfully', async () => {
-    // mock
     // Arrange
-    const token = 'BQAk5W8ftrpN0ujvBoCXfb1I1nDQECCg8psZ3l3cL7JsQ6UzBjijhKViPcW6WP6AMs0vCF6qni4Rflxu1wjo9Ph0yX77lRumSzQ0cKCaiOmxF54NPbmJg0zZJfIN9OaKjwGsmTpSgKsc8oT-8o92V9aobONUNK204b3d7_kwuS-fg5BIZiO474SHZbPEqglcPb0_oal8TZLFFxdA56aL1jFB_QFtDnXbo1CPCRHcrN0hxN3eUBqM-yxvHtCwmigEe00zBMLj84ACwQ'
+    const token = getMockAT()
     const searchWord = 'hello'
+    const expectedResult = getMockTracksFromSearch()
     // Act
     const actualResult = await getData(searchWord, token)
     // Assert
     expect(actualResult).toBeDefined()
+    expect(actualResult.tracks.items.length).toEqual(10)
+    expect(actualResult).toEqual(expectedResult)
+    expect(actualResult).not.toEqual(1)
+    expect(actualResult).not.toEqual(2)
 })
 
-it('', () => {
-    // // mock
-    // // Arrange
-    // render(<SearchBar />)
-    // const inputField = screen.getByRole('input')
-    // const button = screen.getByRole('button')
-    // // Act
-    // //userEvent.type(inputField, '')
-    // //userEvent.click(button)
-    // // Assert
-    
+it('Search fails as there is no search word', async () => {
+    const token = getMockAT()
+    const searchWord = ''
+    // Act
+    const actualResult = await getData(searchWord, token)
+    // Assert
+    expect(actualResult).toBeDefined()
+    expect(actualResult).toEqual(1)
 })
