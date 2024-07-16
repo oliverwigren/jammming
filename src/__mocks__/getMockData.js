@@ -1,11 +1,11 @@
 export const getMockAT = () => {
-    return 'BQDjqvLqA-BZeby3lFHMQKGp-L3fMUJHivgdf_2nf2fQRMpxyhoSJ0DUmuoSK_CPWSfxbuUYStBNVymXMhsJ6TFyEMYOMm_p31_FVQScjUbQDktnxDMbn5IRGVGDf_wUuS64uEMCtOP0om8kAX4EeX3C8e_HdpstAP79XM7hEwSs2HR7xqo6Ijm6RWYpxaOXfOoTmcEW3x5QAUScvCHvmDgOcqR7KuWBFY1k0jDjnSZBU_v9Naz8YdeLo53Trl0xwuwFYnIDlnTMDA'
+    return 'BQAtN4iOPQbbKVbYWgme4RuRn5AUZ13WhEB3QNzPsWzBYqDbbONYyn1HichPcI35NUC6vBVi3bk8c5QKZysmPTeMKkNcf1HfYd7UH_fUurKHO6zzTPvHhT0SNKhHJl_2M1wOiuFSqlUyEOisrT7ZdVf2OnJ3fDPDoYnTbstixsV4EUsXV0wTWB3IKfimfioL6buTGW_qq0F-aJkmD2a2RGTuIAnFzl5ujvuXHQnik9-MIotEYB5W5vgYUMcP2N3V-S1bs_hdBumWbA'
 }
 export const getMockID = () => {
     return 'bjf5xcwcmc5wz5soxpr6f71um'
 }
 export const getMockPlaylistID = () => {
-    return '7dl1Ut9ISgOtTa3MVueSjI'
+    return '25yYXAFh4sbq5ktBkki5bL'
 }
 export const getMockTracksFromSearch = () => {
     return {

@@ -3,7 +3,7 @@ import styles from "../styles/SaveToSpotify.module.css";
 
 function SaveToSpotify({ onClick }) {
   return (
-    <button onClick={onClick} className={styles.button} type="savetospotify">
+    <button onClick={onClick} className={styles.button} role="submitPlaylist">
       Save To Spotify
     </button>
   );

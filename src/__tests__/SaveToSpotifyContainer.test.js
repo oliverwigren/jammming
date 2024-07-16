@@ -15,24 +15,30 @@ import {
   getMockAT,
   getMockID,
   getMockPlaylistID,
+  getMockTracksFromSearch,
 } from "../__mocks__/getMockData.js";
 import { SongsContext, SongsContextArea } from "../context/SongsContextArea.js";
+import PlaylistArea from '../components/PlaylistArea.js'
+import Playlist from "../components/Playlist.js";
+import SaveToSpotify from "../components/SaveToSpotify.js";
+import { act } from "react-dom/test-utils";
 
 it("Gets user id", async () => {
-  //Arrange
-  const expectedResult = "bjf5xcwcmc5wz5soxpr6f71um";
-  // Access token
-  const token = getMockAT();
+  // Arrange
+  const expectedResult = getMockID() // User id
+  const token = getMockAT(); // Access token
   //Act
   const actualResult = await getUserId(token);
   //Assert
   expect(actualResult).toBeDefined();
   expect(actualResult).toBe(expectedResult);
+  expect(actualResult).not.toEqual(1)
+  expect(actualResult).not.toEqual(2)
 });
 
 it("Creates playlist", async () => {
   // Arrange
-  //const expectedResult = getMockPlaylistID()
+  //const expectedResult = getMockPlaylistID() //TODO: 
   const id = getMockID();
   const token = getMockAT();
   const name = "Playlist";
@@ -79,6 +85,7 @@ it("Extract uris from array of tracks", async () => {
   // Assert
   expect(actualResult).toBeDefined();
   expect(actualResult).toEqual(expectedResult);
+  expect(actualResult).not.toEqual(1)
 });
 
 it("Shows red error text", () => {
@@ -128,9 +135,21 @@ it("Shows white success text", () => {
   expect(textElement.innerHTML).toBe(text);
   expect(textElement.style.color).toBe(color);
 });
-
-// it('Song-boxes disappear on submit', async () => {
+//TODO: Song-boxes disappear on submit
+it('Song-boxes disappear on submit', async () => {
+render(<SongsContextArea startValuePlaylist={[{artist: 'Adele', name: 'Hello', album: 25, id: '123', uri: 123}]} startValueSearchResults={[]} ><PlaylistArea> <Playlist /> <SaveToSpotifyContainer><SaveToSpotify/></SaveToSpotifyContainer> </PlaylistArea></SongsContextArea>)
+const button = screen.getByRole('submitPlaylist')
+const container = screen.getByRole('playlistContainer')
 // click
+act(() => {
+  userEvent.click(button)
+
+})
 // wait
-// check if empty
-// })
+await waitFor(() => {
+  const box = screen.findByRole('AddedTrack')
+  // check if empty
+  //expect(box).not.toBeInTheDocument()
+  expect(container).toBeEmptyDOMElement()
+})
+})

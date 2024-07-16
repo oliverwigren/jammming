@@ -2,6 +2,9 @@ import React, { useContext, useEffect, useState } from "react";
 import SaveToSpotify from "../components/SaveToSpotify";
 import { SongsContext } from "../context/SongsContextArea";
 
+//TODO: Configtext ?
+// TODO: Clean up
+
 // Get User id
 export const getUserId = async (token) => {
   try {
@@ -15,10 +18,12 @@ export const getUserId = async (token) => {
     } else {
       console.log("Couldn't find user.");
       //configInfoText("Couldn't create playlist.", true)
+      return 1
     }
   } catch (err) {
     console.log(err);
     //configInfoText("Couldn't create playlist.", true)
+    return 2
   }
 };
 
@@ -59,8 +64,10 @@ export const createPlaylist = async (id, token, name) => {
 // Extract only uris from array of songs
 export const extractUris = async (playlist) => {
   // Creates an array of uris from all playlist songs
-  console.log(playlist)
   let u = [];
+  if (playlist.length < 1) {
+    return 1
+  }
   playlist.forEach((song) => {
     u.push(song.uri);
   });
@@ -92,10 +99,12 @@ export const addToPlaylist = async (playlistId, token, playlist) => {
         return 0;
       }
       console.log("Couldn't add tracks to playlist.");
-      //configInfoText("Couldn't add tracks to playlist.", true)
+      configInfoText("Couldn't add tracks to playlist.", true)
+      return 1
     } catch (err) {
       console.log(err);
-      //configInfoText("Couldn't add tracks to playlist.", true)
+      configInfoText("Couldn't add tracks to playlist.", true)
+      return 2
     }
   }
 };
@@ -134,7 +143,7 @@ function SaveToSpotifyContainer() {
   setPlaylist([]);
   configInfoText('The playlist was succesfully created!', false)
 };
-
+//TODO: Return ?
   useEffect(() => {
     // #1 Get user id
     if (userId === null && token !== null) {
