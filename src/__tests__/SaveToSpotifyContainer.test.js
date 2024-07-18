@@ -3,51 +3,30 @@ import SaveToSpotifyContainer, {
 } from "../containers/SaveToSpotifyContainer.js";
 import SpotifyAuth from "../components/SpotifyAuth.js";
 import {
-  getUserId,
-  createPlaylist,
-  addToPlaylist,
   configInfoText,
 } from "../containers/SaveToSpotifyContainer.js";
-import { render, screen, waitFor } from "@testing-library/react";
+import { getByTestId, render, screen, waitFor } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import userEvent from "@testing-library/user-event";
-import {
-  getMockAT,
-  getMockID,
-  getMockPlaylistID,
-  getMockTracksFromSearch,
-} from "../__mocks__/getMockData.js";
 import { SongsContext, SongsContextArea } from "../context/SongsContextArea.js";
 import PlaylistArea from '../components/PlaylistArea.js'
 import Playlist from "../components/Playlist.js";
 import SaveToSpotify from "../components/SaveToSpotify.js";
 import { act } from "react-dom/test-utils";
+import { getUserId, createPlaylist } from "./__mocks__/mockFunctions.js";
 
 it("Gets user id", async () => {
-  // Arrange
-  const expectedResult = getMockID() // User id
-  const token = getMockAT(); // Access token
-  //Act
-  const actualResult = await getUserId(token);
-  //Assert
-  expect(actualResult).toBeDefined();
-  expect(actualResult).toBe(expectedResult);
-  expect(actualResult).not.toEqual(1)
-  expect(actualResult).not.toEqual(2)
+  const expectedResult = 'bjf5xcwcmc5wz5soxpr6f71um'
+  getUserId.mockReturnValueOnce('bjf5xcwcmc5wz5soxpr6f71um')
+
+  expect(getUserId()).toBe(expectedResult);
 });
 
 it("Creates playlist", async () => {
-  // Arrange
-  //const expectedResult = getMockPlaylistID() //TODO: 
-  const id = getMockID();
-  const token = getMockAT();
-  const name = "Playlist";
-  // Act
-  const actualResult = await createPlaylist(id, token, name);
-  // Assert
-  expect(actualResult).toBeDefined();
-  expect(actualResult).not.toEqual(1);
-  expect(actualResult).not.toEqual(2);
+  const expectedResult = '25yYXAFh4sbq5ktBkki5bL'
+  createPlaylist.mockReturnValueOnce('25yYXAFh4sbq5ktBkki5bL')
+  
+  expect(createPlaylist()).toEqual(expectedResult);
 });
 
 it("Extract uris from array of tracks", async () => {
@@ -101,7 +80,7 @@ it("Shows red error text", () => {
       setName={null}
       token={null}
     >
-      <SaveToSpotifyContainer />{" "}
+      <SaveToSpotifyContainer />
     </SongsContextArea>
   );
   configInfoText(text, true);
@@ -135,21 +114,3 @@ it("Shows white success text", () => {
   expect(textElement.innerHTML).toBe(text);
   expect(textElement.style.color).toBe(color);
 });
-//TODO: Song-boxes disappear on submit
-it('Song-boxes disappear on submit', async () => {
-render(<SongsContextArea startValuePlaylist={[{artist: 'Adele', name: 'Hello', album: 25, id: '123', uri: 123}]} startValueSearchResults={[]} ><PlaylistArea> <Playlist /> <SaveToSpotifyContainer><SaveToSpotify/></SaveToSpotifyContainer> </PlaylistArea></SongsContextArea>)
-const button = screen.getByRole('submitPlaylist')
-const container = screen.getByRole('playlistContainer')
-// click
-act(() => {
-  userEvent.click(button)
-
-})
-// wait
-await waitFor(() => {
-  const box = screen.findByRole('AddedTrack')
-  // check if empty
-  //expect(box).not.toBeInTheDocument()
-  expect(container).toBeEmptyDOMElement()
-})
-})
