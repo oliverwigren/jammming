@@ -1,31 +1,21 @@
-import SaveToSpotifyContainer, {
-  extractUris,
-} from "../containers/SaveToSpotifyContainer.js";
-import SpotifyAuth from "../components/SpotifyAuth.js";
-import {
-  configInfoText,
-} from "../containers/SaveToSpotifyContainer.js";
-import { getByTestId, render, screen, waitFor } from "@testing-library/react";
+import SaveToSpotifyContainer, { extractUris } from "../containers/SaveToSpotifyContainer.js";
+import { configInfoText } from "../containers/SaveToSpotifyContainer.js";
+import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
-import userEvent from "@testing-library/user-event";
-import { SongsContext, SongsContextArea } from "../context/SongsContextArea.js";
-import PlaylistArea from '../components/PlaylistArea.js'
-import Playlist from "../components/Playlist.js";
-import SaveToSpotify from "../components/SaveToSpotify.js";
-import { act } from "react-dom/test-utils";
+import { SongsContextArea } from "../context/SongsContextArea.js";
 import { getUserId, createPlaylist } from "./__mocks__/mockFunctions.js";
 
 it("Gets user id", async () => {
-  const expectedResult = 'bjf5xcwcmc5wz5soxpr6f71um'
-  getUserId.mockReturnValueOnce('bjf5xcwcmc5wz5soxpr6f71um')
+  const expectedResult = "bjf5xcwcmc5wz5soxpr6f71um";
+  getUserId.mockReturnValueOnce("bjf5xcwcmc5wz5soxpr6f71um");
 
   expect(getUserId()).toBe(expectedResult);
 });
 
 it("Creates playlist", async () => {
-  const expectedResult = '25yYXAFh4sbq5ktBkki5bL'
-  createPlaylist.mockReturnValueOnce('25yYXAFh4sbq5ktBkki5bL')
-  
+  const expectedResult = "25yYXAFh4sbq5ktBkki5bL";
+  createPlaylist.mockReturnValueOnce("25yYXAFh4sbq5ktBkki5bL");
+
   expect(createPlaylist()).toEqual(expectedResult);
 });
 
@@ -64,7 +54,7 @@ it("Extract uris from array of tracks", async () => {
   // Assert
   expect(actualResult).toBeDefined();
   expect(actualResult).toEqual(expectedResult);
-  expect(actualResult).not.toEqual(1)
+  expect(actualResult).not.toEqual(1);
 });
 
 it("Shows red error text", () => {
