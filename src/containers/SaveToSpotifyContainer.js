@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import SaveToSpotify from "../components/SaveToSpotify";
 import { SongsContext } from "../context/SongsContextArea";
-// TODO: Clean up
 
 // Get User id
 export const getUserId = async (token) => {
@@ -142,18 +141,18 @@ function SaveToSpotifyContainer() {
     // #1 Get user id
     if (userId === null && token !== null) {
       getUserId(token).then(setUserId)
-      // return
+      return
     }
     // #2 Creates playlist
-    if (playlistId === null && userId !== null) {
+    if (playlistId === null && userId !== null && playlist.length > 0) {
       createPlaylist(userId, token, name).then(setPlaylistId)
-      // return
+      return
     }
     // #3 Adds songs to the playlist
     if (playlistId !== null) {
       addToPlaylist(playlistId, token, playlist, uris);
       ClearPlaylist()
-      // return
+      return
     }
   }, [click, token, playlistId]);
 
