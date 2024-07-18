@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import styles from '../styles/SpotifyAuth.module.css'
-// TODO: Clean up
 
 const SpotifyAuth = (props) => {
   useEffect(() => {
@@ -9,7 +8,6 @@ const SpotifyAuth = (props) => {
     const searchURLParams = new URLSearchParams(window.location.search)
     const token = accesstokenURLParams.get("access_token");
     const error = searchURLParams.get('error')
-    //alert(error)
 
     // Checks if there is an token in the URL
     if (token) {
@@ -21,7 +19,6 @@ const SpotifyAuth = (props) => {
     } 
     // Checks if there is an error, i.e. there is no access token in the URL and there is an error parameter.
     else if(error) {
-      // Something?
       console.log('No access token found')
     }
     // Otherwise, generate a token

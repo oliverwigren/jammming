@@ -1,8 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import SaveToSpotify from "../components/SaveToSpotify";
 import { SongsContext } from "../context/SongsContextArea";
-
-//TODO: Configtext ?
 // TODO: Clean up
 
 // Get User id
@@ -13,16 +11,15 @@ export const getUserId = async (token) => {
     });
     if (response.ok) {
       const data = await response.json();
-      //await setUserId(data.id);
       return data.id
     } else {
       console.log("Couldn't find user.");
-      //configInfoText("Couldn't create playlist.", true)
+      configInfoText("Couldn't create playlist.", true)
       return 1
     }
   } catch (err) {
     console.log(err);
-    //configInfoText("Couldn't create playlist.", true)
+    configInfoText("Couldn't create playlist.", true)
     return 2
   }
 };
@@ -47,16 +44,15 @@ export const createPlaylist = async (id, token, name) => {
     );
     if (response.ok) {
       const data = await response.json();
-      //await setPlaylistId(data.id);
       return data.id
     } else {
       console.log("Couldn't create playlist.");
-      //configInfoText("Couldn't create playlist.", true)
+      configInfoText("Couldn't create playlist.", true)
       return 1
     }
   } catch (err) {
     console.log(err);
-    //configInfoText("Couldn't create playlist.", true)
+    configInfoText("Couldn't create playlist.", true)
     return 2
   }
 };
@@ -95,7 +91,6 @@ export const addToPlaylist = async (playlistId, token, playlist) => {
         }
       );
       if (response.ok) {
-        //await ClearPlaylist();
         return 0;
       }
       console.log("Couldn't add tracks to playlist.");
@@ -143,7 +138,6 @@ function SaveToSpotifyContainer() {
   setPlaylist([]);
   configInfoText('The playlist was succesfully created!', false)
 };
-//TODO: Return ?
   useEffect(() => {
     // #1 Get user id
     if (userId === null && token !== null) {
