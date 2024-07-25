@@ -32,5 +32,6 @@ The purpose of this project was to use well-used React functions as useState, us
 - [x] Responsive for different screen sizes
 - [x] Ability to search for songs by artist
 - [ ] Random song lyrics as placeholder in search bar
+- [ ] Show 3 popular tracks as inspiration
 
 &copy; 2024 Oliver Wigren
